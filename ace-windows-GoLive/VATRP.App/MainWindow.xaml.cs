@@ -307,6 +307,10 @@ namespace com.vtcsecure.ace.windows
 
         private void OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType changeType)
         {
+
+            //************************************************************************************************************************************
+            // Show Self View setting is changed from General Settings from Setting Menu.
+            //************************************************************************************************************************************
             switch (changeType)
             {
                 case Enums.ACEMenuSettingsUpdateType.ClearSettings: ClearSettingsAndUpdateUI();
@@ -336,6 +340,9 @@ namespace com.vtcsecure.ace.windows
 
         private void HandleShowSelfViewChanged()
         {
+            //************************************************************************************************************************************
+            // Setting change for Show Self camera view.
+            //************************************************************************************************************************************
             if (App.CurrentAccount != null)
             {
                 SelfViewItem.IsChecked = App.CurrentAccount.ShowSelfView;
@@ -421,6 +428,10 @@ namespace com.vtcsecure.ace.windows
 
         private void ApplyRegistrationChanges()
         {
+
+            //************************************************************************************************************************************
+            // SIP Encryption related setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             this.registerRequested = true;
             ServiceManager.Instance.UpdateLinphoneConfig();
 
@@ -798,6 +809,10 @@ namespace com.vtcsecure.ace.windows
 
         private void RearrangeUICallView(Size callViewDimensions)
         {
+
+            //**************************************** on minimize ********************
+            // Rearrange all visible screens.
+            //******************************************************************************
             Point topleftInScreen = new Point(0, 0);
             try
             {
@@ -934,6 +949,9 @@ namespace com.vtcsecure.ace.windows
 
         private void OnRttReceived(object sender, EventArgs e)
         {
+            //******************************************************************************************************************************************
+            // When RTT message received from other user in chat window.Or this user writing a message then this method will called
+            //******************************************************************************************************************************************
             IntPtr callPtr = (IntPtr)sender;
 
             if (!_mainViewModel.IsMessagingDocked)
@@ -1085,7 +1103,7 @@ namespace com.vtcsecure.ace.windows
         {
 
             //**********************************************************************************************************************
-            //    This method will called when "Check for Update" item is clicked from ACE menu.
+            //    This method will called when "Check for Update" item is clicked from ACE menu. ACE=>Check For Update
             //**********************************************************************************************************************
 
             // Liz E. - not entirely certain this check works - putting it into the build to test it, but I believe it should already be being called
@@ -1137,6 +1155,10 @@ namespace com.vtcsecure.ace.windows
 
         private void OnShowSelfView(object sender, RoutedEventArgs e)
         {
+
+            //**************************************** ********************
+            // On show self media view.
+            //******************************************************************************
             bool enabled = this.SelfViewItem.IsChecked;
             if (enabled != App.CurrentAccount.ShowSelfView)
             {
@@ -1146,6 +1168,10 @@ namespace com.vtcsecure.ace.windows
 
         private void ShowSelfView(bool enabled)
         {
+
+            //************************************************************
+            // Show hide Media Self View. This will called from  View==>Media Self-View
+            //******************************************************************************
             App.CurrentAccount.ShowSelfView = enabled;
             ServiceManager.Instance.ApplyMediaSettingsChanges();
             ServiceManager.Instance.SaveAccountSettings();
@@ -1291,6 +1317,10 @@ namespace com.vtcsecure.ace.windows
 
         private void OnMuteMicrophone(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // When Microphone mute is selected from Audio Menu
+            //************************************************************************************************************************************
             if (App.CurrentAccount == null)
                 return;
             bool enabled = MuteMicrophoneCheckbox.IsChecked;

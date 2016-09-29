@@ -40,6 +40,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         public override void Initialize()
         {
+
+            //************************************************************************************************************************************
+            // Initilize of More==>Settings==>General
+            //************************************************************************************************************************************
             base.Initialize();
             // intialize start on boot:
             RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
@@ -109,6 +113,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
         //
         private void OnStartOnBoot(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // Start a Boot setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             Console.WriteLine("Start at Boot Clicked");
 
             string applicationName = "ACE";
@@ -138,6 +146,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
         }
         private void OnSipEncryption(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            //SIP Encryption setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             Console.WriteLine("SIP Encryption Clicked");
             if (App.CurrentAccount == null)
                 return;
@@ -169,6 +181,9 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         private void OnAutoAnswerAfterNotification(object sender, RoutedEventArgs e)
         {
+            //************************************************************************************************************************************
+            // Auto Answer setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             Console.WriteLine("Auto Answer After Notification Clicked");
             bool enabled = AutoAnswerAfterNotificationCheckBox.IsChecked ?? false;
             ServiceManager.Instance.ConfigurationService.Set(Configuration.ConfSection.GENERAL,
@@ -196,6 +211,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         private void OnMuteMicrophone(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // Mute Microphone setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             if (App.CurrentAccount == null)
                 return;
             Console.WriteLine("Mute Microphone Clicked");
@@ -214,6 +233,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
         }
         private void OnMuteSpeaker(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // Mute Speaker setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             if (App.CurrentAccount == null)
                 return;
             Console.WriteLine("Mute Speaker Clicked");
@@ -232,6 +255,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
         }
         private void OnEchoCancel(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            //Echo Cancel setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             if (App.CurrentAccount == null)
                 return;
             Console.WriteLine("Echo Cancel Call Clicked");
@@ -264,6 +291,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         private void OnHighContrast(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // High Contrast setting changed from More==>Settings==>General
+            //************************************************************************************************************************************
             Console.WriteLine("Coming Soon: High Contrast Theme");
             if (HighContrastCheckBox.IsChecked ?? false)
             {

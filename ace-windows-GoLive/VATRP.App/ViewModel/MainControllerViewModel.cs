@@ -559,6 +559,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         internal void ResumeCall(CallViewModel viewModel)
         {
+            //***************************************************************************************************************
+            // Resume call after Hold.
+            //*****************************************************************************************************************
             lock (CallsViewModelList)
             {
                 if (FindCallViewModel(viewModel))

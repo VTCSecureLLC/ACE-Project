@@ -68,6 +68,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void OnChatRoomUpdated(object sender, ConversationUpdatedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // When a message is sent or received in Chat then this method will called.
+            //************************************************************************************************************************************
             if (!e.Conversation.IsRttChat) return;
 
             if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
@@ -97,6 +101,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
     
         internal void SendMessage(char key, bool isIncomplete)
         {
+
+            //************************************************************************************************************************************
+            // Seding a Chat message.
+            //************************************************************************************************************************************
             if (!ServiceManager.Instance.IsRttAvailable)
                 return;
             Dispatcher dispatcher;

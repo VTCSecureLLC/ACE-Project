@@ -155,6 +155,9 @@ namespace VATRP.Core.Services
 
         private VATRPChat AddChat(VATRPContact contact, string dialogId, bool isRtt)
         {
+            //************************************************************************************************************************************
+            // Add the Contact Chat in Chat Window.
+            //************************************************************************************************************************************
             VATRPChat item = null;
             if (contact != null)
             {
@@ -169,6 +172,10 @@ namespace VATRP.Core.Services
 
         private void ProcessReceivedMessages()
         {
+
+            //****************************************************************************************
+            // Service for Receive Chat message. It will run in start of application.
+            //*****************************************************************************************
             var wait_time = Int32.MaxValue;
 
             while (_isRunning)
@@ -272,6 +279,10 @@ namespace VATRP.Core.Services
 
         public VATRPChat CreateChat(VATRPContact contact, string dialogId, bool isRtt)
         {
+
+            //************************************************************************************************************************************
+            // Create Chat of particular contact.
+            //************************************************************************************************************************************
             if (contact == null)
             {
                 return null;
@@ -565,9 +576,9 @@ namespace VATRP.Core.Services
 
         private bool RemoveChat(VATRPChat chat)
         {
-            //****************************************************************************************************************
-            // Called when call is disconnected and it will close all the chats
-            //****************************************************************************************************************
+            //******************************************************************************************************************************************************
+            // Called when call is disconnected and it will close all the chats. Also remove chat when Contact is deleted from Contact list
+            //******************************************************************************************************************************************************
 
             var retValue = false;
             if (chat == null)
@@ -584,6 +595,10 @@ namespace VATRP.Core.Services
 
         public void UpdateRTTFontFamily(string newFont)
         {
+
+            //************************************************************************************************************************************
+            // Change the message font when Font family is changed from More==>Settings==>Text
+            //************************************************************************************************************************************
             lock (this._chatItems)
             {
                 foreach (VATRPChat chatItem in this._chatItems)
@@ -639,6 +654,10 @@ namespace VATRP.Core.Services
 
         public bool ComposeAndSendMessage(IntPtr callPtr, VATRPChat chat, char key, bool inCompleteMessage)
         {
+
+            //************************************************************************************************************************************
+            // Compose and send a message in chat. This method is called only when Call is running and chat message sent using the right side chat window of call.
+            //************************************************************************************************************************************
             VATRPChat chatID = this.FindRTTChat(chat.NativePtr);
             if ((chatID == null) || (chatID.Contact == null))
             {
@@ -843,6 +862,10 @@ namespace VATRP.Core.Services
 
         private void LoadLinphoneChatEvents()
         {
+
+            //****************************************************************************************
+            // Loading the Linphone chat service events
+            //*****************************************************************************************
             if (_chatItems == null)
                 _chatItems = new ObservableCollection<VATRPChat>();
 
@@ -1055,6 +1078,10 @@ namespace VATRP.Core.Services
 
         private void OnContactAdded(object sender, ContactEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // On Contact added in history/chat window.
+            //************************************************************************************************************************************
             VATRPContact contact = this._contactSvc.FindContact(e.Contact);
             if (contact != null)
             {
@@ -1069,6 +1096,10 @@ namespace VATRP.Core.Services
 
         private void OnContactsChanged(object sender, EventArgs eventArgs)
         {
+
+            //*************************************************************************************************************************************************
+            // When contact is edited, contact status is changed.
+            //*************************************************************************************************************************************************
             foreach (var contact in this._contactSvc.Contacts)
             {
                 VATRPContact chatContact = FindContact(new ContactID(contact.ID, contact.NativePtr));
@@ -1095,6 +1126,9 @@ namespace VATRP.Core.Services
 
         public void OnContactRemoved(object sender, ContactRemovedEventArgs e)
         {
+            //*************************************************************************************************************************************************
+            // When Contact removed from Contact list.
+            //*************************************************************************************************************************************************
             VATRPContact contact = this._contactSvc.FindContact(e.contactId);
             if (contact != null)
             {
@@ -1113,6 +1147,9 @@ namespace VATRP.Core.Services
 
         private void OnChatMessageComposing(IntPtr chatPtr, uint rttCode)
         {
+            //************************************************************************************************************************************
+            // When the other user of chat is writing a message then this method will called.
+            //************************************************************************************************************************************
             var args = new MessageComposingEventArgs(chatPtr, rttCode);
             EnqueueReceivedMsg(args);
         }
@@ -1129,6 +1166,9 @@ namespace VATRP.Core.Services
 
         private void OnChatMessageComposing(MessageComposingEventArgs args)
         {
+            //*********************************************************************************************************************************
+            // When other user/this user composing a message in chat window. This method will called on each char which user write.
+            //*********************************************************************************************************************************
             if (args == null)
                 return;
             System.Windows.Threading.Dispatcher dispatcher = null;
@@ -1209,10 +1249,16 @@ namespace VATRP.Core.Services
                                     message.IsIncompleteMessage = false;
                                     break;
                                 case '\b':
+                                    //*****************************************************
+                                    // When other user write a message in compose window and remove the written text then this case will called.
+                                    //****************************************************
                                     if (sb.Length > 0)
                                         sb.Remove(sb.Length - 1, 1);
                                     break;
                                 default:
+                                    //*****************************************************
+                                    // When other user writing a char in a chat message in compose window 
+                                    //****************************************************
                                     sb.Append(rttCodeArray[i]);
                                     break;
                             }
@@ -1411,6 +1457,10 @@ namespace VATRP.Core.Services
         #region IVATRPService
         public bool Start()
         {
+
+            //****************************************************************************************
+            // Starting the Chat Service.
+            //*****************************************************************************************
             if (_isStarted)
                 return true;
 

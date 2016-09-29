@@ -29,6 +29,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         public DialPadScreen()
         {
+
+            //****************************************************************************************
+            // When DialPad screen Initilize.
+            //*****************************************************************************************
             InitializeComponent();
             timerHold = new System.Windows.Forms.Timer()
             {
@@ -173,6 +177,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnDialpadPreviewKeyup(object sender, KeyEventArgs e)
         {
+            //************************************************************************************************************************************
+            // When DialPad is visible over Call Window and any key pressed from keyboard then this event will called. Key may be numeric or char.
+            //************************************************************************************************************************************
             if (e.Key != Key.Enter)
                 return;
             try

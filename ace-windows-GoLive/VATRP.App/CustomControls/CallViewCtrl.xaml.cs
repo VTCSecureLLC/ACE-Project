@@ -275,6 +275,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnToggleRTT(object sender, RoutedEventArgs e)
         {
+            //************************************************************************************************************************************
+            // When Chat button is pressed from Call window overlay. This will display chat window in the right side of Call Window.
+            //************************************************************************************************************************************
             if (!_viewModel.IsRTTEnabled)
             {
                 _inactivityTimerStopped = true;
@@ -322,7 +325,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private void buttonKeyPad(object sender, RoutedEventArgs e)
         {
             //****************************************************************************************
-            // When buton is pressed on Keypad over Call window.
+            // When buton is pressed on/of Keypad over Call window.
             //*****************************************************************************************
             if (KeypadClicked != null)
             {

@@ -34,12 +34,20 @@ namespace com.vtcsecure.ace.windows.CustomControls
         }
         public void SetDataContext(MenuViewModel viewModel)
         {
+
+            //****************************************************************************************
+            // Setting the More Menu view
+            //*****************************************************************************************
             _viewModel = viewModel;
             DataContext = _viewModel;
         }
 
         private void OnResourcesClicked(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // On Resources from More==>Settings==>Resources
+            //************************************************************************************************************************************
             if (ResourceClicked != null) 
                 ResourceClicked(this, EventArgs.Empty);
         }
@@ -55,12 +63,19 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnVmClicked(object sender, RoutedEventArgs e)
         {
+            //************************************************************************************************************************************
+            // On VideoMail clicked from  More==>Settings==>VideoMail
+            //************************************************************************************************************************************
             if (VideoMailClicked != null)
                 VideoMailClicked(this, EventArgs.Empty);
         }
 
         private void OnSelfViewClicked(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // On Self-Preview clicked from  More==>Settings==>Self-Preview
+            //************************************************************************************************************************************
             if (SelfViewClicked != null)
                 SelfViewClicked(this, EventArgs.Empty);
         }

@@ -56,6 +56,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         public MessagingViewModel(IChatService chatMng, IContactsService contactsMng):this()
         {
+
+            //****************************************************************************************
+            // Setting the event of Chat. This method is called when user select a contact for a Call.
+            //*****************************************************************************************
             this._chatsManager = chatMng;
             this._contactsManager = contactsMng;
             this._chatsManager.NewConversationCreated += OnNewConversationCreated;
@@ -69,6 +73,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
         #region Events
         private void OnLoggedContactUpdated(object sender, ContactEventArgs e)
         {
+
+            //****************************************************************************************
+            // Updating infoa of Logged in contact which was login in this application
+            //*****************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
             {
                 ServiceManager.Instance.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
@@ -89,6 +97,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void OnChatContactRemoved(object sender, ContactRemovedEventArgs e)
         {
+
+            //*************************************************************************************************************************************************
+            // When Contact is removed from Chat.
+            //*************************************************************************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
             {
                 ServiceManager.Instance.Dispatcher.BeginInvoke(DispatcherPriority.Normal,

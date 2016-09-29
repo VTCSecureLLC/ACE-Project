@@ -90,6 +90,10 @@ namespace VATRP.Core.Services
 
         private void LoadLinphoneContacts()
         {
+
+            //************************************************************************************************************************************
+            // Loading and Parsing the Linphone contacts.
+            //************************************************************************************************************************************
             if (_manager.LinphoneService.LinphoneCore == IntPtr.Zero)
                 return;
 
@@ -281,6 +285,9 @@ namespace VATRP.Core.Services
 
         public void UpdateFavoriteOption(VATRPContact contact)
         {
+            //*************************************************************************************************************************************************
+            // When contact added to Favorite or Removed from Favorite.
+            //*************************************************************************************************************************************************
             if (contact.DbID == 0)
                 return;
             if (editing)
@@ -324,6 +331,10 @@ namespace VATRP.Core.Services
 
         public int ImportVCards(string vcardPath)
         {
+
+            //**************************************************************************************************************
+            // Import Vcard contact in contact list.
+            //**************************************************************************************************************
             if (_manager.LinphoneService.LinphoneCore == IntPtr.Zero)
                 return 0;
             IntPtr vcardsList = LinphoneAPI.linphone_vcard_list_from_vcard4_file(vcardPath);
@@ -385,6 +396,9 @@ namespace VATRP.Core.Services
 
         public void ExportVCards(string vcardPath)
         {
+            //**************************************************************************************************************
+            // Export Vcard contact from contact list.
+            //**************************************************************************************************************
             if (_manager.LinphoneService.LinphoneCore == IntPtr.Zero)
                 return;
             IntPtr defList = LinphoneAPI.linphone_core_get_default_friend_list(_manager.LinphoneService.LinphoneCore);
@@ -396,6 +410,10 @@ namespace VATRP.Core.Services
 
         public void AddLinphoneContact(string name, string username, string address)
         {
+
+            //**************************************************************************************************************
+            // Add contact in Linphone contact, Also called when Import Vcard contact in contact list.
+            //**************************************************************************************************************
             if (_manager.LinphoneService.LinphoneCore == IntPtr.Zero)
                 return;
 
@@ -454,6 +472,10 @@ namespace VATRP.Core.Services
 
         private void UpdateContactDbId(VATRPContact contact)
         {
+
+            //**************************************************************************************************************
+            // When Import Vcard contact in contact list, then updating the contact.
+            //**************************************************************************************************************
             if (editing)
                 return;
             editing = true;
@@ -493,6 +515,10 @@ namespace VATRP.Core.Services
 
         public void EditLinphoneContact(VATRPContact contact, string newname, string newsipassdress)
         {
+
+            //************************************************************************************************************************
+            // Edit contact in Contact list.
+            //************************************************************************************************************************
             if (_manager.LinphoneService.LinphoneCore == IntPtr.Zero)
                 return;
 
@@ -572,6 +598,10 @@ namespace VATRP.Core.Services
 
         public void AddContact(VATRPContact contact, string group)
         {
+
+            //************************************************************************************************************************************
+            // Adding contact in Chat history and Call History.
+            //************************************************************************************************************************************
             // update avatar
             UpdateAvatar(contact);
             Contacts.Add(contact);
@@ -667,6 +697,9 @@ namespace VATRP.Core.Services
 
         public void RemoveContact(string id, bool isUserAction)
         {
+            //*************************************************************************************************************************************
+            // Remove Contact from Contact list.
+            //*************************************************************************************************************************************
             lock (this.Contacts)
             {
                 VATRPContact contact = null;
@@ -819,6 +852,10 @@ namespace VATRP.Core.Services
         
         public bool Start()
         {
+
+            //*********************************************************************************************************************************
+            // Setting the Event of LinphoneServices.
+            //**********************************************************************************************************************************
             IsLoaded = false;
             InitializeContactOptions();
             _manager.LinphoneService.CardDAVContactCreated += LinphoneCardDavContactCreated;

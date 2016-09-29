@@ -132,6 +132,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void ExecuteExportCommand(object obj)
         {
+
+            //**************************************************************************************************************
+            // Exporting Vcard contact from contact list.
+            //**************************************************************************************************************
             var saveDlg = new SaveFileDialog()
             {
                 CheckPathExists = true,
@@ -219,6 +223,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void ContactAdded(object sender, ContactEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // Contact added in Contact History and Chat window.
+            //************************************************************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
             {
                 ServiceManager.Instance.Dispatcher.BeginInvoke((Action)(() => this.ContactAdded(sender, e)));
@@ -242,6 +250,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void ContactRemoved(object sender, ContactRemovedEventArgs e)
         {
+            //*************************************************************************************************************************************************
+            // When Contact removed from Contact list.
+            //*************************************************************************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
             {
                 ServiceManager.Instance.Dispatcher.BeginInvoke((Action)(() => this.ContactRemoved(sender, e)));
@@ -308,6 +319,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void RemoveContactModel(ContactID contactID)
         {
+
+            //*************************************************************************************************************************************************
+            // Remove contact and update contact list.
+            //*************************************************************************************************************************************************
             lock (this.Contacts)
             {
                 foreach (var contact in Contacts)

@@ -758,6 +758,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         internal void MuteSpeaker(bool isMuted)
         {
+
+            //************************************************************************************************************************************
+            // When Mute speaker is selected over Call Window.
+            //************************************************************************************************************************************
             _linphoneService.MuteSpeaker(isMuted);
             //            _linphoneService.ToggleMute();
             //            IsMuteOn = _linphoneService.IsCallMuted();
@@ -798,6 +802,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         internal void ToggleCallStatisticsInfo(bool bShow)
         {
+
+            //************************************************************************************************************************************
+            // Toggle for Call Statistics, Show or Hide Call Statistics.
+            //************************************************************************************************************************************
             if (CallInfoCtrl != null)
             {
                 if (!bShow)
@@ -1238,6 +1246,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         internal void ResumeCall()
         {
+
+            //***************************************************************************************************************
+            // Resume call after Hold.
+            //*****************************************************************************************************************
             SetTimeout(delegate
             {
                 if (_currentCall != null)
@@ -1256,6 +1268,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         public void SubscribeCallStatistics()
         {
+
+            //*****************************************************
+            // When Call started this method will called for Call Statistics. Update the Info related to Call Statics
+            //****************************************************
             if (subscribedForStats)
                 return;
             subscribedForStats = true;

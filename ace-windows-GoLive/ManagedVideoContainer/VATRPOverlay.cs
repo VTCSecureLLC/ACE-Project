@@ -340,6 +340,10 @@ namespace VATRP.Linphone.VideoWrapper
 
         private void OnUpdatecallTimer(object sender, ElapsedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // Update Call timer (Duration of Call)
+            //************************************************************************************************************************************
             if (callInfoWindow.TransparentWindow.Dispatcher != null)
             {
                 if (callInfoWindow.TransparentWindow.Dispatcher.Thread != Thread.CurrentThread)

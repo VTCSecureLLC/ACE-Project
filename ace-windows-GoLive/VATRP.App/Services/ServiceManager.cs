@@ -275,6 +275,10 @@ namespace com.vtcsecure.ace.windows.Services
         
         private void OnContactserviecStarted(object sender, EventArgs e)
         {
+
+            //****************************************************************************************
+            // After contacts found , Starting the Chat service.
+            //*****************************************************************************************
             ChatService.Start();
         }
 
@@ -963,6 +967,10 @@ namespace com.vtcsecure.ace.windows.Services
 
         private void LoadPrivateData()
         {
+
+            //****************************************************************************************
+            // Getting the contacts, starting contact service, chat service etc.
+            //*****************************************************************************************
             LinphoneService.UpdatePrivateDataPath();
             HistoryService.Start();
             ContactService.Start();

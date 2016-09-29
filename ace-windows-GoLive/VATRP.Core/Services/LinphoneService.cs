@@ -749,6 +749,10 @@ namespace VATRP.Core.Services
 		#region Registration
 		public bool Register()
 		{
+
+            //****************************************************************************************
+            // Registering in the application.
+            //*****************************************************************************************
             // make sure that we are not already registering
             //if ((currentRegistrationState == LinphoneRegistrationState.LinphoneRegistrationOk) ||
             if (currentRegistrationState == LinphoneRegistrationState.LinphoneRegistrationProgress)

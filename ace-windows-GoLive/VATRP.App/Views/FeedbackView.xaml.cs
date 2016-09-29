@@ -34,7 +34,7 @@ namespace com.vtcsecure.ace.windows.Views
         private void Initialize()
         {
             //***********************************************************************************************************************
-            // Initilize the support view.
+            // Initilize the Feedback view. ACE=>Provide ACE Feedback and ACE=>Go To Support
             //***********************************************************************************************************************
             InitializeComponent();
             _viewModel = new FeedbackViewModel();

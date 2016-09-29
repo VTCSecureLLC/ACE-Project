@@ -838,6 +838,10 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
         }
         private void ShowOverlaySwitchCallWindow(bool bShow)
         {
+
+            //***************************************************************************************************************
+            // Show/Hide call overlay buttons
+            //*****************************************************************************************************************
             ctrlCall.ctrlOverlay.ShowCallsSwitchWindow(bShow);
             if (!bShow)
                 ctrlCall.ctrlOverlay.StopPausedCallTimer();
@@ -845,9 +849,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 		private void OnRegistrationChanged(LinphoneRegistrationState state, LinphoneReason reason)
 		{
-            //****************************************************************************************************
-            // This method called when User state is changed like Active/Unavailable etc. Also called when Signout is clicked.
-            //****************************************************************************************************
+            //***************************************************************************************************************************
+            // This method called when User active state is changed like Active/Unavailable etc. Also called when Signout is clicked.
+            //**********************************************************c****************************************************************
 
 		    if (RegistrationState == state)
 		        return;
@@ -1039,6 +1043,10 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
         // VATRP-1899: This is a quick and dirty solution for POC. It will be funational, but not the end implementation we will want.
         private void SetToUserAgentView(bool isUserAgent)
         {
+
+            //**************************************** on minimize ********************
+            // Displaying the Menu item in main view.
+            //******************************************************************************
             System.Windows.Visibility visibility = System.Windows.Visibility.Visible;
 
             if (isUserAgent)
@@ -1290,6 +1298,10 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 	    private void OnLinphoneCoreStarted(object sender, EventArgs e)
 	    {
+
+            //****************************************************************************************
+            // Starting the Linphone core service.
+            //*****************************************************************************************
 	        ServiceManager.Instance.LinphoneService.OnCameraMuteEvent += OnCameraMuted;
 	        if (App.CurrentAccount != null && !string.IsNullOrEmpty(App.CurrentAccount.VideoMailUri))
 	            ServiceManager.Instance.LinphoneService.SubscribeForVideoMWI(App.CurrentAccount.VideoMailUri);

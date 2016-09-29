@@ -382,6 +382,8 @@ namespace com.vtcsecure.ace.windows.ViewModel
                         _videoStats.download_bandwidth);
                     ReceivingFPS = ServiceManager.Instance.LinphoneService.GetFrameRate(curparams, false);
                     SendingFPS = ServiceManager.Instance.LinphoneService.GetFrameRate(curparams, true);
+
+                  // System.Diagnostics.Debug.WriteLine(ReceivingFPS.ToString(), SendingFPS.ToString());
                     var vs = ServiceManager.Instance.LinphoneService.GetVideoSize(curparams, false);
                     ReceivingVideoResolution = string.Format("{0}({1}x{2})", "", vs.width, vs.height);
 
@@ -495,7 +497,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         {
 
             //****************************************************************************************
-            // When anything related to call is changed like mute mic etc. then this method will called.
+            // When anything related to call is changed like mute mic etc. then this method will called. Or a message is sent from chat.
             //*****************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
             {

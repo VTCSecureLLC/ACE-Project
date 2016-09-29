@@ -37,6 +37,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         public SettingsWindow(CallViewCtrl callControl, UnifiedSettings_AccountChange accountChangeRequestedMethod)
         {
+
+            //************************************************************************************************************************************
+            // Initilize of setting screen More==>Settings. Called only once when application runs first time.
+            //************************************************************************************************************************************
             InitializeComponent();
             
             AccountChangeRequested += accountChangeRequestedMethod;
@@ -143,6 +147,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         private void OnClose(object sender, RoutedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // Close setting view/screen.
+            //************************************************************************************************************************************
             Console.WriteLine("Close Clicked");
             _currentContent.SaveData();
             this.Hide();
@@ -264,6 +272,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         private void OnVisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // Visibility changed of Setting screen, Setting screen get show or hide then this event will called.
+            //************************************************************************************************************************************
             var isVisible = (bool) e.NewValue;
             if (!isVisible && (_currentContent != null))
             {

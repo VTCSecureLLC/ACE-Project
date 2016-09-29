@@ -32,6 +32,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         public RTTCtrl()
         {
+
+            //*****************************************************
+            // Initilize of RTTCtrl view. which was displaying on the right side of call window.
+            //****************************************************
             InitializeComponent();
             pasteHandlerTimer.Tick += OnCheckPastedText;
             DataObject.AddPastingHandler(MessageTextBox, PasteHandler);
@@ -103,6 +107,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnConversationUpdated(object sender, EventArgs eventArgs)
         {
+            //************************************************************************************************************************************
+            // When Chat conversation is updaated then it will scroll to end of chat so recent message should display.
+            //************************************************************************************************************************************
             ScrollToEnd();
         }
 
@@ -118,6 +125,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
        private void ScrollToEnd()
        {
+           //************************************************************************************************************************************
+           // When Chat conversation is updaated then it will scroll to end of chat so recent message should display.
+           //************************************************************************************************************************************
+
            if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
            {
                ServiceManager.Instance.Dispatcher.BeginInvoke((Action)(ScrollToEnd));
@@ -134,6 +145,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnSendButtonClicked(object sender, RoutedEventArgs e)
         {
+            //************************************************************************************************************************************
+            // Send button clicked from Chat window, that is visible in the right side of Call.
+            //************************************************************************************************************************************
             if (_viewModel != null)
             {
                 if (!ServiceManager.Instance.IsRttAvailable /*|| !_viewModel.IsSendingModeRTT*/)
@@ -149,6 +163,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnTextInput(object sender, TextCompositionEventArgs e)
         {
+            //************************************************************************************************************************************
+            // On Input in the Chat window. Chat window which is displaying in the right side of call window.
+            //************************************************************************************************************************************
             if (_viewModel != null)
             {
                 if (_viewModel.IsSendingModeRTT)
@@ -175,6 +192,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
+            //************************************************************************************************************************************
+            // A key is pressed in the chat window which is visible in the right side of Call Window when call is running.
+            //************************************************************************************************************************************
             if (MessageTextBox.CaretIndex != MessageTextBox.Text.Length)
                 MessageTextBox.CaretIndex = MessageTextBox.Text.Length;
 

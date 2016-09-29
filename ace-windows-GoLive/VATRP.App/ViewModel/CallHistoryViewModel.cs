@@ -54,6 +54,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void OnContactRemoved(object sender, ContactRemovedEventArgs e)
         {
+            //*************************************************************************************************************************************************
+            // When Contact removed from Contact list.
+            //*************************************************************************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
             {
                 ServiceManager.Instance.Dispatcher.BeginInvoke((Action)(() => this.OnContactRemoved(sender, e)));
@@ -76,6 +79,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void OnNewContactAdded(object sender, ContactEventArgs e)
         {
+
+            //************************************************************************************************************************************
+            // On New contact added in Call History and Chat
+            //************************************************************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
             {
                 ServiceManager.Instance.Dispatcher.BeginInvoke((Action)(() => this.OnNewContactAdded(sender, e)));

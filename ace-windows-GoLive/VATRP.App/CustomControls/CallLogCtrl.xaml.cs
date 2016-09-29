@@ -39,6 +39,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         public void SetDataContext(CallHistoryViewModel viewModel)
         {
+
+            //*****************************t***********************************************************
+            // Setting the call history view
+            //*****************************************************************************************
             _callHistoryModel = viewModel;
             DataContext = viewModel;
         }

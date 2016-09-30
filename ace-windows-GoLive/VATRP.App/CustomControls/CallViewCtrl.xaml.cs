@@ -182,6 +182,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnEndPaused(object sender, RoutedEventArgs e)
         {
+
+            //**************************************************************************************************************
+            // End the call when 2 calls are running.
+            //***************************************************************************************************************
             EndCall(false);
         }
 
@@ -356,12 +360,19 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         public void HoldAndAcceptCall(object sender, RoutedEventArgs e)
         {
+            //**************************************************************************************************************
+            // Hold and Accept the call when a call is already running.
+            //***************************************************************************************************************
             if (_parentViewModel != null)
                 _parentViewModel.AcceptCall(_viewModel);
         }
 
         private void AcceptAndEndCall(object sender, RoutedEventArgs e)
         {
+
+            //**************************************************************************************************************
+            // End the call and Accept the call when a call is already running.
+            //***************************************************************************************************************
             SaveStates();
             if (_parentViewModel != null)
                 _parentViewModel.EndAndAcceptCall(_viewModel);
@@ -752,6 +763,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnMouseInactivityTimer(object sender, EventArgs e)
         {
+
+            //****************************************************************************************************************************************
+            // When Mouse is not moving then this method will called.
+            //***************************************************************************************************************************************
             _mouseInactivityTimer.Stop();
             lock (_viewLock)
             {

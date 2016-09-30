@@ -74,6 +74,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnAddToContacts(object sender, RoutedEventArgs e)
         {
+
+            //**************************************************************************************************************
+            // Add to Contacts, When we move mouse over the contact it shows a Plus icon and when we click on plus icon then this method will called.
+            //***************************************************************************************************************
             var historyItemVM = ((Button)sender).Tag as HistoryCallEventViewModel;
             if (historyItemVM != null)
             {

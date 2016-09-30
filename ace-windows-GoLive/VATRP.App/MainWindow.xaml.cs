@@ -649,6 +649,10 @@ namespace com.vtcsecure.ace.windows
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+
+            //**********************************************************************************************
+            // Onload of mainwindow.
+            //********************************************************************************************
             // VATRP-901
             EventManager.RegisterClassHandler(typeof(Window),
      Keyboard.KeyUpEvent, new KeyEventHandler(OnAppKeyUp), true);
@@ -753,6 +757,9 @@ namespace com.vtcsecure.ace.windows
 
         private void OnFullScreenToggled(bool switch_on)
         {
+            //**********************************************************************************************
+            // When Full screen button is pressed over call window. Toggle for Fullscreen and Normal screen
+            //********************************************************************************************
             if (_mainViewModel.IsInCallFullScreen == switch_on)
                 return;
 
@@ -930,12 +937,20 @@ namespace com.vtcsecure.ace.windows
 
         private void OnCameraSwitched(bool switch_on)
         {
+
+            //**********************************************************************************************
+            // When Call in running and we switch off/On the Camera from Call window button
+            //********************************************************************************************
             if (_mainViewModel.ActiveCallModel != null && _mainViewModel.ActiveCallModel.ActiveCall != null)
                 ServiceManager.Instance.LinphoneService.SendCameraSwtichAsInfo(_mainViewModel.ActiveCallModel.ActiveCall.NativeCallPtr, switch_on);
         }
 
         private void OnRttToggled(bool switch_on)
         {
+
+            //**********************************************************************************************
+            // Show and Hide RTT (Right side chat window) window.
+            //********************************************************************************************
             _mainViewModel.IsMessagingDocked = switch_on;
             ShowRTTView.IsChecked = switch_on;
             this.MessageViewBorder.BorderThickness = _mainViewModel.IsMessagingDocked

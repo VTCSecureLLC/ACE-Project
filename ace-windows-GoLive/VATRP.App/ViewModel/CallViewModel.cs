@@ -685,6 +685,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         private void OnServiceTimer(object sender, ElapsedEventArgs e)
         {
+
+            //**********************************************************************************************************
+            // Call timer update
+            //**********************************************************************************************************
             if (ServiceManager.Instance.Dispatcher != null)
             {
                 if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
@@ -910,6 +914,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         internal void ToggleVideo(bool videoOn)
         {
+            //**************************************************************************************
+            // Toggle Video, Enable/Disaable the video
+            //******************************************************************************************
             _linphoneService.ToggleVideo(videoOn, _currentCall.NativeCallPtr);
         }
 
@@ -1228,6 +1235,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         internal void PauseCall()
         {
+
+            //********************************************************************************************
+            // Pause a running call/ On hold
+            //********************************************************************************************
             SetTimeout(delegate
             {
                 if (_currentCall != null)

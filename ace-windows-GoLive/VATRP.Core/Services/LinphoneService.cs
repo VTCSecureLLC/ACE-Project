@@ -670,6 +670,10 @@ namespace VATRP.Core.Services
 
 	    public void LockCalls()
 	    {
+
+            //**********************************************************************************************
+            // When call is connected, lock the call.
+            //********************************************************************************************
             Monitor.Enter(callLock);  
 	    }
         public void UnlockCalls()
@@ -679,6 +683,10 @@ namespace VATRP.Core.Services
 
         public VATRPCall FindCall(IntPtr callPtr)
         {
+
+            //**********************************************************************************************
+            // Find a Call, if user is receiving a call.
+            //********************************************************************************************
             foreach (var call in callsList)
             {
                 if (call.NativeCallPtr == callPtr)
@@ -931,6 +939,9 @@ namespace VATRP.Core.Services
 		#region Call
 		public void MakeCall(string destination, bool videoOn, bool rttEnabled, bool muteMicrophone, bool muteSpeaker, bool enableVideo, string geolocation)
 		{
+            //******************************************************************************************************************************************************
+            // When user select a contact to Make a Call, this method will called.
+            //******************************************************************************************************************************************************
 		    if (callsList.Count > 0)
 		    {
                 LOG.Warn("Cannot make call. Cause - There is active call");
@@ -975,6 +986,10 @@ namespace VATRP.Core.Services
 
 		public void AcceptCall(IntPtr callPtr, bool rttEnabled, bool muteMicrophone, bool muteSpeaker, bool enableVideo)
 		{
+
+            //**********************************************************************************************
+            // Accepting a call
+            //********************************************************************************************
             if (linphoneCore == IntPtr.Zero)
             {
                 if (ErrorEvent != null)
@@ -1057,6 +1072,10 @@ namespace VATRP.Core.Services
 
         public bool TerminateCall(IntPtr callPtr, string message)
         {
+
+            //***********************************************************************************************************************************************
+            // Terminating a call, this method will called when user select End Call button or Cancel when call is ringing on other users screen.
+            //************************************************************************************************************************************************
             if (linphoneCore == IntPtr.Zero)
             {
                 if (ErrorEvent != null)
@@ -1101,6 +1120,9 @@ namespace VATRP.Core.Services
 
         public void ResumeCall(IntPtr callPtr)
         {
+            //***************************************************************************************************************
+            // Resume a call when 2 calls are running and one call is disconnected or After a hold
+            //************************************************************************************************************************
             if (linphoneCore == IntPtr.Zero)
             {
                 if (ErrorEvent != null)
@@ -1118,6 +1140,9 @@ namespace VATRP.Core.Services
 
         public void PauseCall(IntPtr callPtr)
         {
+            //***************************************************************************************************************
+            // When user put a call on hold.
+            //************************************************************************************************************************
             if (linphoneCore == IntPtr.Zero)
             {
                 if (ErrorEvent != null)
@@ -1134,6 +1159,10 @@ namespace VATRP.Core.Services
         }
         public bool IsCallMuted()
 		{
+
+            //**********************************************************************************************
+            // Check is call is muted?
+            //********************************************************************************************
 			if (linphoneCore == IntPtr.Zero)
 				return false;
 			return LinphoneAPI.linphone_core_mic_enabled(linphoneCore) == 0;
@@ -1195,6 +1224,9 @@ namespace VATRP.Core.Services
 
         public void ToggleVideo(bool enableVideo, IntPtr callPtr)
         {
+            //**************************************************************************************
+            // Toggle Video, Enable/Disaable the video
+            //******************************************************************************************
             if (linphoneCore == IntPtr.Zero)
                 return;
 

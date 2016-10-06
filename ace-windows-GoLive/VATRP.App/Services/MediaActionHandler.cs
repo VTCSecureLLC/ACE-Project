@@ -14,10 +14,10 @@ namespace com.vtcsecure.ace.windows.Services
         internal static bool MakeVideoCall(string remoteUri)
         {
 
-            //******************************** Maake Video Call ********************************
+            //******************************** Maake Video Call **********************************************************************************************
             // This method is called when user tap on call button on dial pad. or When user select the Contact from Contact list (All/Favorites) 
             // It will called only when there is a valid number entered for a call (After validation)
-            //*******************************************************************************************
+            //*************************************************************************************************************************************************
             ILinphoneService _linphoneService = ServiceManager.Instance.LinphoneService;
 
             if (!_linphoneService.CanMakeVideoCall())

@@ -1120,7 +1120,7 @@ namespace VATRP.Core.Services
 
         public void ResumeCall(IntPtr callPtr)
         {
-            //***************************************************************************************************************
+            //************************************************************************************************************************
             // Resume a call when 2 calls are running and one call is disconnected or After a hold
             //************************************************************************************************************************
             if (linphoneCore == IntPtr.Zero)
@@ -1225,7 +1225,7 @@ namespace VATRP.Core.Services
         public void ToggleVideo(bool enableVideo, IntPtr callPtr)
         {
             //**************************************************************************************
-            // Toggle Video, Enable/Disaable the video
+            // Toggle Video, Enable/Disable the video
             //******************************************************************************************
             if (linphoneCore == IntPtr.Zero)
                 return;
@@ -2332,7 +2332,7 @@ namespace VATRP.Core.Services
 		void OnRegistrationChanged (IntPtr lc, IntPtr cfg, LinphoneRegistrationState cstate, string message) 
 		{
             //****************************************************************************************************
-            // This method called when Registration state is changed.
+            // This method will called when Registration state is changed.
             //****************************************************************************************************
 			if (linphoneCore == IntPtr.Zero) return;
             // Liz E. - I think that here - if the registration state has not actually changed, just return
@@ -2487,9 +2487,9 @@ namespace VATRP.Core.Services
 
 		            if (!removeCall)
 		            {
-                        //**********************************************************************************************
+                        //*******************************************************************************************************************************
                         // When call disconnected like Missed call. or Connect a call/Incoming call. Direction is incoming/outgoing etc
-                        //********************************************************************************************
+                        //*******************************************************************************************************************************
 		                LOG.Info("Call not found. Adding new call into list. ID - " + callPtr + " Calls count: " +
 		                         callsList.Count);
                         callPtr = LinphoneAPI.linphone_call_ref(callPtr);

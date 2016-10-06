@@ -56,8 +56,8 @@ namespace com.vtcsecure.ace.windows
         {
 
             //***********************************************************************************************************************************
-            //A type that derives from Application may override OnStartup. 
-            //The overridden method must call OnStartup in the base class if the Startup event needs to be raised.
+            // A type that derives from Application may override OnStartup. 
+            // The overridden method must call OnStartup in the base class if the Startup event needs to be raised.
             //************************************************************************************************************************************
             base.OnStartup(e);
 
@@ -106,10 +106,10 @@ namespace com.vtcsecure.ace.windows
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
 
-            //************************************************************
+            //********************************************************************************************************************
             //      A type that derives from Application may override OnStartup. 
             //      The overridden method must call OnStartup in the base class if the Startup event needs to be raised.
-            //************************************************************************************
+            //********************************************************************************************************************
 
             _log.Info("====================================================");
             _log.Info(String.Format("============== Starting VATRP v{0} =============",
@@ -194,7 +194,7 @@ namespace com.vtcsecure.ace.windows
         private void App_OnExit(object sender, ExitEventArgs e)
         {
             //************************************************************************************************************************
-            // On Application Exit
+            // This method will called when user quit the application. "On Application Exit"
             //************************************************************************************************************************
             mutex.Dispose();
         }

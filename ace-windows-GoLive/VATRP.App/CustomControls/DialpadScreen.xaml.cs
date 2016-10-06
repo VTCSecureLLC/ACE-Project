@@ -30,9 +30,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         public DialPadScreen()
         {
 
-            //****************************************************************************************
+            //*****************************************************************************************************************
             // When DialPad screen Initilize.
-            //*****************************************************************************************
+            //*****************************************************************************************************************
             InitializeComponent();
             timerHold = new System.Windows.Forms.Timer()
             {
@@ -53,9 +53,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private void buttonKeyPad_Click(object sender, RoutedEventArgs e)
         {
 
-            //************************************* DialPad key press event ************************
-            // This event will called when dial button (1-9) will tapped for dial a number
-            //**************************************************************************************
+            //************************************* DialPad key press event ****************************************************
+            // This event will called when dial button (1-9) will tapped for dial pad.
+            //******************************************************************************************************************
             int oldNumberLendth = _viewModel.RemotePartyNumber.Length;
             var key = DialpadKey.DialpadKey_KeyNone;
 
@@ -130,9 +130,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         
         private void VideoCallClick(object sender, RoutedEventArgs e)
         {
-            //******************************** Call button clicked ********************************
-            // This event will called when call button clicked
-            //*******************************************************************************************
+            //******************************** Call button clicked *************************************************
+            // This event will called when Call button clicked
+            //******************************************************************************************************
 
             if (string.IsNullOrWhiteSpace(_viewModel.RemotePartyNumber)) // If entered number is blank than it will show error
             {
@@ -146,9 +146,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnBackSpaceClicked(object sender, MouseButtonEventArgs e)
         {
-            //******************************** Backspace button clicked ********************************
-            // This event will called when backspace button is tapped and it will remove the digit that is enter in last. It remove only when there is more than 0 characters or numbers.
-            //*******************************************************************************************
+            //******************************** Backspace button clicked *******************************************************************************************
+            // This event will called when backspace button is tapped and it will remove the digit that is enter in last. 
+            // It remove only when there is more than 0 characters or numbers.
+            //*****************************************************************************************************************************************************
             if (!String.IsNullOrEmpty(_viewModel.RemotePartyNumber))
             {
                 _viewModel.RemotePartyNumber = _viewModel.RemotePartyNumber.Substring(0,
@@ -177,9 +178,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnDialpadPreviewKeyup(object sender, KeyEventArgs e)
         {
-            //************************************************************************************************************************************
+            //***********************************************************************************************************************************************
             // When DialPad is visible over Call Window and any key pressed from keyboard then this event will called. Key may be numeric or char.
-            //************************************************************************************************************************************
+            //***********************************************************************************************************************************************
             if (e.Key != Key.Enter)
                 return;
             try

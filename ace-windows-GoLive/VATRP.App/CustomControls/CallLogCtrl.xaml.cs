@@ -40,9 +40,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         public void SetDataContext(CallHistoryViewModel viewModel)
         {
 
-            //*****************************t***********************************************************
-            // Setting the call history view
-            //*****************************************************************************************
+            //******************************************************************************************************************
+            // Setting the call history view to Display.
+            //******************************************************************************************************************
             _callHistoryModel = viewModel;
             DataContext = viewModel;
         }
@@ -60,9 +60,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private void OnEventSelected(object sender, SelectionChangedEventArgs e)
         {
 
-            //***************************on click on contact name **********************
-            // This method will called when user select a name on number in the list for a call. In both tab All/Missed
-            //**************************************************************************
+            //***************************on click on contact name ******************************************************************
+            // This method will called when user select a name or number in the list for a call. In both tab All/Missed call tab.
+            //**********************************************************************************************************************
             if (_callHistoryModel.SelectedCallEvent != null)
             {
                 if (MakeCallRequested != null)
@@ -75,9 +75,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private void OnAddToContacts(object sender, RoutedEventArgs e)
         {
 
-            //**************************************************************************************************************
-            // Add to Contacts, When we move mouse over the contact it shows a Plus icon and when we click on plus icon then this method will called.
-            //***************************************************************************************************************
+            //**********************************************************************************************************************************************************
+            // Add a contact to Contacts, When we move mouse over the contact it shows a Plus icon and when we click on plus icon then this method will called.
+            //**********************************************************************************************************************************************************
             var historyItemVM = ((Button)sender).Tag as HistoryCallEventViewModel;
             if (historyItemVM != null)
             {

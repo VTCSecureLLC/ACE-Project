@@ -495,9 +495,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
         internal void DeclineCall(CallViewModel viewModel, string message)
         {
 
-            //**********************************************************************************************
+            //***********************************************************************************************************************************
             // Call Declined, Message will contain a message like I am in meeting which was selected when call is declined.
-            //********************************************************************************************
+            //***********************************************************************************************************************************
             lock (CallsViewModelList)
             {
                 if (FindCallViewModel(viewModel))

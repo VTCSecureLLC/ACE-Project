@@ -33,9 +33,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         public RTTCtrl()
         {
 
-            //*****************************************************
+            //***************************************************************************************************************
             // Initilize of RTTCtrl view. which was displaying on the right side of call window.
-            //****************************************************
+            //***************************************************************************************************************
             InitializeComponent();
             pasteHandlerTimer.Tick += OnCheckPastedText;
             DataObject.AddPastingHandler(MessageTextBox, PasteHandler);
@@ -87,9 +87,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
         public void SetViewModel(InCallMessagingViewModel viewModel)
         {
 
-            //**********************************************************************************************
-            // Set the call screen
-            //********************************************************************************************
+            //****************************************************************************************************************************
+            // Set the call screen to display.
+            //*****************************************************************************************************************************
             if (_viewModel != null && _viewModel.Equals(viewModel))
                 return;
 
@@ -108,7 +108,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private void OnConversationUpdated(object sender, EventArgs eventArgs)
         {
             //************************************************************************************************************************************
-            // When Chat conversation is updaated then it will scroll to end of chat so recent message should display.
+            // When Chat conversation is updated then it will scroll to end of chat so recent message should display.
             //************************************************************************************************************************************
             ScrollToEnd();
         }
@@ -126,7 +126,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
        private void ScrollToEnd()
        {
            //************************************************************************************************************************************
-           // When Chat conversation is updaated then it will scroll to end of chat so recent message should display.
+           // When Chat conversation is updated then it will scroll to end of chat so recent message should display.
            //************************************************************************************************************************************
 
            if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
@@ -164,7 +164,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private void OnTextInput(object sender, TextCompositionEventArgs e)
         {
             //************************************************************************************************************************************
-            // On Input in the Chat window. Chat window which is displaying in the right side of call window.
+            // On Text Input in the Chat window. Chat window which is displaying in the right side of call window.
             //************************************************************************************************************************************
             if (_viewModel != null)
             {

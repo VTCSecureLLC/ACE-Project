@@ -74,9 +74,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnEdit(object sender, RoutedEventArgs e)
         {
-            //****************************************************************************************************
-            //Edit button clicked on Favorite/All Contacts list. User can change username, email, avatar from this dialog box.
-            //****************************************************************************************************
+            //**************************************************************************************************************************************
+            //  Edit button clicked on Favorite/All Contacts list. User can change username, email, avatar from this dialog box.
+            //**************************************************************************************************************************************
 
             if (!ServiceManager.Instance.ContactService.IsEditing())
             {
@@ -101,9 +101,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnDelete(object sender, RoutedEventArgs e)
         {
-            //****************************************************************************************************
+            //*******************************************************************************************************************************************************
             // This method is called when delete button is tapped in contact list (All/Favorite). This Remove the contact from All/Favorite contact list.
-            //****************************************************************************************************
+            //*******************************************************************************************************************************************************
 
             if (!ServiceManager.Instance.ContactService.IsEditing())
             {

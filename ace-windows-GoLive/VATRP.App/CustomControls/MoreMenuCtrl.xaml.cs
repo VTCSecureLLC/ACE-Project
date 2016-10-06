@@ -36,7 +36,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         {
 
             //****************************************************************************************
-            // Setting the More Menu view
+            // Setting the More Menu view.
             //*****************************************************************************************
             _viewModel = viewModel;
             DataContext = _viewModel;
@@ -46,7 +46,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         {
 
             //************************************************************************************************************************************
-            // On Resources from More==>Settings==>Resources
+            // On Resources item clicked from More==>Settings==>Resources
             //************************************************************************************************************************************
             if (ResourceClicked != null) 
                 ResourceClicked(this, EventArgs.Empty);
@@ -54,9 +54,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnSettingsClicked(object sender, RoutedEventArgs e)
         {
-            //****************************************************************************************************************
+            //*************************************************************************************************************************************
             // Settings menu item clicked from "More" menu item.
-            //****************************************************************************************************************
+            //*************************************************************************************************************************************
             if (SettingsClicked != null)
                 SettingsClicked(this, EventArgs.Empty);
         }

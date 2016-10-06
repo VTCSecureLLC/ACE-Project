@@ -321,9 +321,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
         internal void UpdateCallInfo(VATRPCall call)
         {
 
-            //**********************************************************************************************************
+            //*********************************************************************************************************************************
             // When anything related to call is changed or when call is running then this method is called.
-            //**********************************************************************************************************
+            //*********************************************************************************************************************************
             if (call == null || call.CallState != VATRPCallState.StreamsRunning)
             {
                 ResetCallInfoView();
@@ -496,9 +496,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
         internal void OnCallStatisticsChanged(VATRPCall call)
         {
 
-            //****************************************************************************************
-            // When anything related to call is changed like mute mic etc. then this method will called. Or a message is sent from chat.
-            //*****************************************************************************************
+            //****************************************************************************************************************************************
+            // When anything related to call is changed like mute mic etc. Then this method will called. Or a message is sent from chat.
+            //****************************************************************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
             {
                 ServiceManager.Instance.Dispatcher.BeginInvoke((Action)(() => this.OnCallStatisticsChanged(call)));

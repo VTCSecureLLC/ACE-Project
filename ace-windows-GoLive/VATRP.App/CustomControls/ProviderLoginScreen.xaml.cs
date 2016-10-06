@@ -139,7 +139,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private void LoginCmd_Click(object sender, RoutedEventArgs e)
         {
             //*******************************Login Clicked Event ***********************************
-            // This method will called when user click on login button.
+            // This method will called when user click on Login button.
             //**************************************************************************************
             string userName = LoginBox.Text;
             if (string.IsNullOrWhiteSpace(userName)) // If username is blank then it will throw error message.
@@ -283,9 +283,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void Login_old()
         {
-            //**************************************************************************************************
-            // Login in the ACE application. Check the validation for Username,Password,Hostname,Hostport,Serverport etc
-            //*************************************************************************************************
+            //*********************************************************************************************************************************
+            // Login in the ACE application. Check the validation for Username,Password,Hostname,Hostport,Serverport etc.
+            //*********************************************************************************************************************************
             string username = LoginBox.Text;
             if (string.IsNullOrWhiteSpace(username))
             {

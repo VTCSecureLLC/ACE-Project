@@ -75,7 +75,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         {
 
             //****************************************************************************************
-            // Updating infoa of Logged in contact which was login in this application
+            // Updating info of Logged in contact which was login in this application
             //*****************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != Thread.CurrentThread)
             {

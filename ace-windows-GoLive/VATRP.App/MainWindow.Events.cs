@@ -36,9 +36,9 @@ namespace com.vtcsecure.ace.windows
 	    private void DeferedHideOnError(object sender, EventArgs e)
 	    {
 
-            //****************************************************************************************
+            //********************************************************************************************************************************
             // When outgoing call is declined by other user.
-            //*****************************************************************************************
+            //********************************************************************************************************************************
 	        lock (deferredLock)
 	        {
 	            deferredHideTimer.Stop();
@@ -85,9 +85,9 @@ namespace com.vtcsecure.ace.windows
 	    {
 
 
-            //***********************************************************************************************************************
-            // This method is called when user try to connect a call and call status changed like (Trying,Connected, Ringing, Closed, incoming ) etc.
-            //***********************************************************************************************************************
+            //*******************************************************************************************************************************************************
+            // This method is called when user try to connect a call and call status changed like (Trying, Connected, Ringing, Closed, Incoming ) etc.
+            //*******************************************************************************************************************************************************
 	        if (this.Dispatcher == null)
 	            return;
 
@@ -238,9 +238,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 			        BringToFront();
 			        break;
 				case VATRPCallState.Ringing:
-                    //****************************************************************************************
+                    //***********************************************************************************************************************************
                     // Ringing for Outgoing call.
-                    //*****************************************************************************************
+                    //***********************************************************************************************************************************
                     this.ShowSelfPreviewItem.IsEnabled = false;
 					callViewModel.OnRinging();
                     _mainViewModel.IsCallPanelDocked = true;
@@ -339,9 +339,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 					break;
 				case VATRPCallState.StreamsRunning:
-                    //**********************************************************************************************
+                    //********************************************************************************************************************************************
                     // When call is Running
-                    //********************************************************************************************
+                    //********************************************************************************************************************************************
 					callViewModel.OnStreamRunning();
                     ShowCallOverlayWindow(true);
 
@@ -450,9 +450,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 					ctrlCall.AddVideoControl();
                     break;
                 case VATRPCallState.Closed:
-                    //******************************************************************************************************************
+                    //*******************************************************************************************************************************************
                     // When call is disconnected from both side.
-                    //**************************************************************************************************************
+                    //*******************************************************************************************************************************************
 					if (_flashWindowHelper != null)
                         _flashWindowHelper.StopFlashing();
                     LOG.Info(string.Format("CallStateChanged: Result Code - {0}. Message: {1} Call: {2}", call.SipErrorCode, call.LinphoneMessage, call.NativeCallPtr));
@@ -500,9 +500,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 			        }
 			        else
 			        {
-                        //**********************************************************************************************
+                        //************************************************************************************************************************************************
                         // When call is disconnected.
-                        //********************************************************************************************
+                        //*************************************************************************************************************************************************
 			            int callsCount = _mainViewModel.RemoveCalViewModel(callViewModel);
 			            if (callsCount == 0)
 			            {
@@ -642,9 +642,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 			if (stopPlayback)
 			{
-                //**********************************************************************************************
+                //***********************************************************************************************************************************************
                 // Stop Ringing for Incoming call/Outgoing call
-                //********************************************************************************************
+                //***********************************************************************************************************************************************
 				ServiceManager.Instance.SoundService.StopRingBackTone();
 				ServiceManager.Instance.SoundService.StopRingTone();
 			}
@@ -677,9 +677,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 	    private void BringToFront()
 	    {
-            //****************************************************************************************************
+            //***************************************************************************************************************************************************
             // Send ACE application window to Top/front of all open windows when we connect a call.
-            //****************************************************************************************************
+            //***************************************************************************************************************************************************
 
 	        if (WindowState == WindowState.Minimized)
 	            this.WindowState = WindowState.Normal;
@@ -692,9 +692,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 	    private void OnCallConnectingTimeout(object sender, EventArgs e)
         {
 
-            //***********************************************************************************************************************
+            //*************************************************************************************************************************************************
             // When call is not connected and call timeout.
-            //***********************************************************************************************************************
+            //*************************************************************************************************************************************************
             var callViewModel = sender as CallViewModel;
 
             if (callViewModel != null && callViewModel.ActiveCall != null)
@@ -724,9 +724,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
         private void WakeupScreenSaver()
         {
-            //**********************************************************************************************
+            //*************************************************************************************************************************************
             // Activate the screen, if screen saver is running then remove screen saver.
-            //********************************************************************************************
+            //*************************************************************************************************************************************
             // simulate mouse move event
             ScreenSaverHelper.SimulateMouseMoveEvent(this);
 
@@ -740,15 +740,15 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
         private void OnCallQualityChanged(VATRP.Linphone.VideoWrapper.QualityIndicator callQuality)
         {
-            //****************************************************************************************
+            //******************************************************************************************************************************************
             // When Call quality is changed.
-            //*******************************************************************************************
+            //******************************************************************************************************************************************
             if (_mainViewModel.ActiveCallModel == null || 
                 callQuality == VATRP.Linphone.VideoWrapper.QualityIndicator.Unknown)
             {
-                //**********************************************************************************************
+                //**************************************************************************************************************************************
                 // When call is on Hold/Pause
-                //********************************************************************************************
+                //**************************************************************************************************************************************
                 ctrlCall.ctrlOverlay.ShowQualityIndicatorWindow(false);
                 ctrlCall.ctrlOverlay.ShowEncryptionIndicatorWindow(false);
                 return;
@@ -805,9 +805,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 	    private void ShowCallOverlayWindow(bool bShow)
 	    {
 
-            //**********************************************************************************************
+            //*********************************************************************************************************************************************************
             // Set the call screen, show/hide controls over call window.
-            //********************************************************************************************
+            //*********************************************************************************************************************************************************
 	        bShow &= (this.WindowState != WindowState.Minimized);
             if (bShow)
                 RearrangeUICallView(GetCallViewSize());
@@ -831,17 +831,17 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
         private void ShowOverlayNewCallWindow(bool bShow)
         {
-            //**********************************************************************************************
+            //********************************************************************************************************************************************
             // Show hide call accept/decline buttons.
-            //********************************************************************************************
+            //********************************************************************************************************************************************
             ctrlCall.ctrlOverlay.ShowNewCallAcceptWindow(bShow);
         }
         private void ShowOverlaySwitchCallWindow(bool bShow)
         {
 
-            //***************************************************************************************************************
-            // Show/Hide call overlay buttons
-            //*****************************************************************************************************************
+            //*********************************************************************************************************************************************
+            // Show/Hide call overlay buttons.
+            //*********************************************************************************************************************************************
             ctrlCall.ctrlOverlay.ShowCallsSwitchWindow(bShow);
             if (!bShow)
                 ctrlCall.ctrlOverlay.StopPausedCallTimer();
@@ -851,7 +851,7 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 		{
             //***************************************************************************************************************************
             // This method called when User active state is changed like Active/Unavailable etc. Also called when Signout is clicked.
-            //**********************************************************c****************************************************************
+            //***************************************************************************************************************************
 
 		    if (RegistrationState == state)
 		        return;
@@ -1005,9 +1005,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 	    private void RegistrationTimerTick(object source, System.Timers.ElapsedEventArgs e)
 	    {
-            //****************************************************************************************
+            //*************************************************************************************************************************************************
             // Timer for Register in the application, It will continue till get registered in the application.
-            //****************************************************************************************
+            //*************************************************************************************************************************************************
 	        bool register = registrationTimer.Interval == 120000;
             DestroyRegistrationTimer();
             // VATRP-3225 - if we get here, then we recieved a registration state of Progress without a followup change. We need to invalidate and try to register again.
@@ -1044,9 +1044,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
         private void SetToUserAgentView(bool isUserAgent)
         {
 
-            //**************************************** on minimize ********************
+            //**************************************** on minimize *************************************************************************
             // Displaying the Menu item in main view.
-            //******************************************************************************
+            //******************************************************************************************************************************
             System.Windows.Visibility visibility = System.Windows.Visibility.Visible;
 
             if (isUserAgent)
@@ -1100,9 +1100,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 	    private void UpdateVideomailCount()
 	    {
 
-            //***************************************************************************************************************
+            //********************************************************************************************************************************************************
             // Set the video mail count.
-            //***************************************************************************************************************
+            //********************************************************************************************************************************************************
 	        if (_mainViewModel.ContactModel != null)
 	            _mainViewModel.ContactModel.VideoMailCount = App.CurrentAccount.VideoMailCount;
 	        if (_mainViewModel.MoreMenuModel != null)
@@ -1113,9 +1113,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 	    private void OnChildVisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 
-            //****************************************************************************************************
+            //*****************************************************************************************************************************************************
             // This event will called when any child window displayed or hide.
-            //****************************************************************************************************
+            //*****************************************************************************************************************************************************
 			if (App.AllowDestroyWindows)
 				return;
 			var window = sender as VATRPWindow;
@@ -1163,9 +1163,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 		private void OnCallInfoVisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-            //****************************************************************************************
-            // When callinfo screen display or hide then this method will called.
-            //*****************************************************************************************
+            //***************************************************************************************************************************************************
+            // When CallInfo screen get display or hide then this method will called.
+            //***************************************************************************************************************************************************
 			if (App.AllowDestroyWindows)
 				return;
 			var window = sender as VATRPWindow;
@@ -1183,9 +1183,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 		private void OnMakeCallRequested(string called_address)
 		{
-            //****************************************************************************************************
+            //*************************************************************************************************************************************************
             // This method called when user request to connect a call.
-            //****************************************************************************************************
+            //*************************************************************************************************************************************************
 
 		    lock (_mainViewModel.CallsViewModelList)
 		    {
@@ -1200,9 +1200,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 		private void OnKeypadClicked(object sender, KeyPadEventArgs e)
 		{
-            //****************************************************************************************
+            //*************************************************************************************************************************************************
             // When buton is pressed on Keypad over Call window.
-            //*****************************************************************************************
+            //*************************************************************************************************************************************************
 			_linphoneService.PlayDtmf((char)e.Key, 250);
 			if (_mainViewModel.ActiveCallModel != null)
 				_linphoneService.SendDtmf(_mainViewModel.ActiveCallModel.ActiveCall, (char)e.Key);
@@ -1210,9 +1210,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 		private void OnDialpadClicked(object sender, KeyPadEventArgs e)
 		{
-            //****************************************************************************************
+            //*************************************************************************************************************************************************
             // When any button is clicked on the DialPad.
-            //*****************************************************************************************
+            //*************************************************************************************************************************************************
 			_linphoneService.PlayDtmf((char)e.Key, 250);
 		}
 
@@ -1256,9 +1256,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 	    private void OnStateChanged(object sender, EventArgs e)
 	    {
-            //**********************************************************************************************************************
+            //*******************************************************************************************************************************************
             //    This method will called when window state is changed like from show to hide, minimize etc.
-            //**********************************************************************************************************************
+            //*******************************************************************************************************************************************
 
 	        Window_StateChanged(sender, e);
 
@@ -1299,9 +1299,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 	    private void OnLinphoneCoreStarted(object sender, EventArgs e)
 	    {
 
-            //****************************************************************************************
+            //*********************************************************************************************************************************************
             // Starting the Linphone core service.
-            //*****************************************************************************************
+            //*********************************************************************************************************************************************
 	        ServiceManager.Instance.LinphoneService.OnCameraMuteEvent += OnCameraMuted;
 	        if (App.CurrentAccount != null && !string.IsNullOrEmpty(App.CurrentAccount.VideoMailUri))
 	            ServiceManager.Instance.LinphoneService.SubscribeForVideoMWI(App.CurrentAccount.VideoMailUri);
@@ -1346,9 +1346,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 	    private void OnDeclineMessageReceived(object sender, DeclineMessageArgs args)
 	    {
 
-            //****************************************************************************************
+            //****************************************************************************************************************************************
             // When Outgoing call was declined with a message and message received.
-            //*****************************************************************************************
+            //****************************************************************************************************************************************
 	        var restartTimer = false;
 
 	        lock (_mainViewModel.CallsViewModelList)
@@ -1403,9 +1403,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
         private void OnLinphoneConnectivityChanged(bool reachable)
         {
 
-            //****************************************************************************************************
+            //*******************************************************************************************************************************
             // Check the Network connectivity OR connectivity is changed.
-            //****************************************************************************************************
+            //*******************************************************************************************************************************
             if (_isNeworkReachable == reachable)
                 return;
 
@@ -1461,9 +1461,9 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
 
 	    private void DestroyRegistrationTimer()
 	    {
-            //****************************************************************************************************
+            //************************************************************************************************************************************
             // When SignOut is clicked and need to destroy the registration timer.
-            //****************************************************************************************************
+            //************************************************************************************************************************************
 	        lock (regLock)
 	        {
 	            if (registrationTimer != null)

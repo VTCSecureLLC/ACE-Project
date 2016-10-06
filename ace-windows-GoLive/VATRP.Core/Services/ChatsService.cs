@@ -244,7 +244,7 @@ namespace VATRP.Core.Services
         public void CloseChat(VATRPChat chat)
         {
             //****************************************************************************************
-            // Close chat messages. When call is disconnected. that time also this method called.
+            // Close chat messages. When call is disconnected. that time this method also called.
             //*****************************************************************************************
             if (chat != null)
             {
@@ -256,7 +256,7 @@ namespace VATRP.Core.Services
         public void CloseChat(ContactID contactID)
         {
             //****************************************************************************************
-            // Close chat messages. When call is disconnected. that time also this method called.
+            // Close chat messages. When call is disconnected. that time this method also called.
             //*****************************************************************************************
             if (contactID != null)
             {
@@ -556,9 +556,9 @@ namespace VATRP.Core.Services
         public VATRPChat InsertRttChat(VATRPContact contact, IntPtr chatPtr, IntPtr callPtr)
         {
 
-            //****************************************************************************************
+            //*****************************************************************************************************************
             // This method is called in both Chat and Call. When we sent/receive a message or connect/receive a call.
-            //*****************************************************************************************
+            //*****************************************************************************************************************
             VATRPChat chat = FindRTTChat(chatPtr);
 
             if (chat != null)
@@ -634,9 +634,9 @@ namespace VATRP.Core.Services
         public void ActivateChat(VATRPChat chat)
         {
 
-            //****************************************************************************************
+            //********************************************************************************************************************************************************
             // Change the selected chat in chat window. Like we have 2 Chats and 1 is selected. when user select the other chat (Chat 2) then it will called.
-            //*****************************************************************************************
+            //********************************************************************************************************************************************************
             lock (this._chatItems)
             {
                 foreach (VATRPChat chatItem in this._chatItems)
@@ -655,9 +655,9 @@ namespace VATRP.Core.Services
         public bool ComposeAndSendMessage(IntPtr callPtr, VATRPChat chat, char key, bool inCompleteMessage)
         {
 
-            //************************************************************************************************************************************
+            //*****************************************************************************************************************************************************************
             // Compose and send a message in chat. This method is called only when Call is running and chat message sent using the right side chat window of call.
-            //************************************************************************************************************************************
+            //*****************************************************************************************************************************************************************
             VATRPChat chatID = this.FindRTTChat(chat.NativePtr);
             if ((chatID == null) || (chatID.Contact == null))
             {

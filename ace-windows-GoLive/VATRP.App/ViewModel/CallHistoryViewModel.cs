@@ -81,7 +81,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         {
 
             //************************************************************************************************************************************
-            // On New contact added in Call History and Chat
+            // On New contact added in Call History and Chat.
             //************************************************************************************************************************************
             if (ServiceManager.Instance.Dispatcher.Thread != System.Threading.Thread.CurrentThread)
             {

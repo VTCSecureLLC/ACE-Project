@@ -136,6 +136,10 @@ namespace com.vtcsecure.ace.windows.Views
                 }
 
             }
+
+            MessageBox.Show("Contact added successfully.", "ACE", MessageBoxButton.OK,
+                       MessageBoxImage.None);
+
             this.DialogResult = true;
             Close();
         }

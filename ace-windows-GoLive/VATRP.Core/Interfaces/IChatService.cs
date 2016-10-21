@@ -23,6 +23,8 @@ namespace VATRP.Core.Interfaces
 		bool ComposeAndSendMessage(VATRPChat chat, string text);
         void MarkChatAsRead(ChatID chat);
         void UpdateRTTFontFamily(string newFont);
+
+        void UpdateRTTFontSize(int newFontSize);
         bool HasUnreadMessages();
         void ActivateChat(VATRPChat chat);
         VATRPChat InsertRttChat(VATRPContact contact, IntPtr chatPtr, IntPtr callPtr);

@@ -245,6 +245,8 @@ namespace VATRP.Core.Model
         [Column]
         public string CardDavRealm { get; set; }
 
+        [Column]
+        public int RTTFontSize { get; set; }
         #endregion
 
         #region Methods

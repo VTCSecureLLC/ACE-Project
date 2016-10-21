@@ -28,6 +28,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             Interval = TimeSpan.FromMilliseconds(20),
         };
 
+        private string msgTextNew = string.Empty;
         #endregion
 
         public RTTCtrl()
@@ -156,6 +157,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 }
                 else
                 {
+                   // _viewModel.EnqueueInput(_viewModel.MessageText); 
                     _viewModel.EnqueueInput("\r");
                 }
             }
@@ -163,14 +165,29 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnTextInput(object sender, TextCompositionEventArgs e)
         {
+            //*********************************************************************************************
+            // Code by MK for diable RTT and send message on enter
+            //*********************************************************************************************
+            if (e.Text == "\r")
+            {
+                _viewModel.EnqueueInput(_viewModel.MessageText + "\r");
+                //_viewModel.SendMessage(_viewModel.MessageText + "\r");
+                _viewModel.MessageText = string.Empty;
+
+            }
+            //*******************************************************************************************************
+
+            Console.WriteLine("OnTextInput MessageTextBox ***" + MessageTextBox.Text);
             //************************************************************************************************************************************
             // On Text Input in the Chat window. Chat window which is displaying in the right side of call window.
             //************************************************************************************************************************************
             if (_viewModel != null)
             {
                 if (_viewModel.IsSendingModeRTT)
-                    _viewModel.EnqueueInput(e.Text);
-                else if (!string.IsNullOrEmpty(e.Text) )
+                {
+                      //_viewModel.EnqueueInput(e.Text); // Commented by MK on dated 20-OCT-2016 for disable RTT message
+                }
+                else if (!string.IsNullOrEmpty(e.Text))
                 {
                     if (e.Text == "\r")
                     {
@@ -192,6 +209,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
+
+            //Console.WriteLine("OnPreviewKeyDown MessageTextBox ***" + MessageTextBox.Text);
+            return;
             //************************************************************************************************************************************
             // A key is pressed in the chat window which is visible in the right side of Call Window when call is running.
             //************************************************************************************************************************************
@@ -223,6 +243,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 default:
                     break;
             }
+
+            Console.WriteLine("Message Text: " + _viewModel.MessageText);
+
             if (inputKey != Char.MinValue)
             {
                 if (_viewModel != null)
@@ -230,10 +253,19 @@ namespace com.vtcsecure.ace.windows.CustomControls
                     if (_viewModel.IsSendingModeRTT)
                     {
                         _viewModel.EnqueueInput(inputKey.ToString());
+                       
                     }
                 }
             }
         }
+
+       
+
+        
+
+       
+
+        
     }
         
    

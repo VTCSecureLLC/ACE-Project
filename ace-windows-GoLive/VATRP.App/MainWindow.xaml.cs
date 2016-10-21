@@ -1360,6 +1360,9 @@ namespace com.vtcsecure.ace.windows
 
         private void OnCallResourceRequested(ResourceInfo resourceInfo)
         {
+            //***************************************************************************************************************************************************
+            // On Resource number clicked
+            //***************************************************************************************************************************************************
             if ((resourceInfo != null) && !string.IsNullOrEmpty(resourceInfo.address))
             {
                 MediaActionHandler.MakeVideoCall(resourceInfo.address);

@@ -345,7 +345,7 @@
 								Margin="5,0,5,0" TextWrapping="Wrap"
                                  FontFamily="{Binding Chat.MessageFont}"
 								Foreground="{StaticResource ChatPageBubbleTextFont}"
-								FontSize="18" 
+								FontSize="{Binding Chat.MessageFontSize}" 
 								  VerticalAlignment="Top"/>
                                             </StackPanel>
                                         </Border>

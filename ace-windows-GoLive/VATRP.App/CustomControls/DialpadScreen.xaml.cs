@@ -204,7 +204,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
         }
 
         private void OnDialpadPreviewKeydown(object sender, KeyEventArgs e)
-        {
+       {
+            //**********************************************************************************************
+            // This method will called when any Keypress in Dialpad from System keyboard.
+            //**********************************************************************************************
             if (e.Key == Key.Enter)
                 e.Handled = true; // prevent further processing
         }

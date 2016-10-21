@@ -606,11 +606,31 @@ namespace VATRP.Core.Services
                     if (chatItem != null)
                     {
                         chatItem.MessageFont = newFont;
+                        //chatItem.MessageFontSize = 40;
+                        //chatItem.Message
                     }
                 }
             }
         }
+        public void UpdateRTTFontSize(int newFont)
+        {
 
+            //************************************************************************************************************************************
+            // Change the message font when Font family is changed from More==>Settings==>Text
+            //************************************************************************************************************************************
+            lock (this._chatItems)
+            {
+                foreach (VATRPChat chatItem in this._chatItems)
+                {
+                    if (chatItem != null)
+                    {
+                       // chatItem.MessageFont = newFont;
+                        chatItem.MessageFontSize = newFont;
+                        //chatItem.Message
+                    }
+                }
+            }
+        }
         public bool HasUnreadMessages()
         {
 

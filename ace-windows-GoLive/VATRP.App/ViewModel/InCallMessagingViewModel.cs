@@ -23,7 +23,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         private ObservableCollection<string> _textSendModes;
         private string _selectedTextSendMode;
         private string _sendButtonTitle;
-        private bool _isSendingModeRtt = true;
+        private bool _isSendingModeRtt =  true;
         private DateTime _conversationStartTime;
         #endregion
 
@@ -100,7 +100,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         #region Methods
     
         internal void SendMessage(char key, bool isIncomplete)
-        {
+       {
 
             //************************************************************************************************************************************
             // Seding a Chat message.
@@ -181,6 +181,10 @@ namespace com.vtcsecure.ace.windows.ViewModel
                 Chat.MessageFont = App.CurrentAccount.RTTFontFamily;
             }
 
+            if (App.CurrentAccount != null)
+            {
+                Chat.MessageFontSize = App.CurrentAccount.RTTFontSize;
+            }
             ChatViewContact.IsSelected = true;
 
             this.MessagesListView = CollectionViewSource.GetDefaultView(this.Messages);

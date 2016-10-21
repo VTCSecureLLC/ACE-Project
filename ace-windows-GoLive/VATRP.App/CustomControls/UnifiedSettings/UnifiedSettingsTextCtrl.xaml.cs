@@ -59,6 +59,8 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
             }
             var rttFontName = string.Empty;
 
+            int rttFontSize = 18;
+
             var defaultFont = Fonts.SystemFontFamilies.FirstOrDefault();
             if (defaultFont != null)
                 rttFontName = defaultFont.Source;
@@ -66,6 +68,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
             if (App.CurrentAccount != null)
             {
                 rttFontName = App.CurrentAccount.RTTFontFamily;
+                rttFontSize = App.CurrentAccount.RTTFontSize;
             }
 
             foreach (var fontItem in TextFontFamilyComboBox.Items)
@@ -80,6 +83,27 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                     }
                 }
             }
+
+            //********************************************************
+            //Font Size
+
+            foreach (var fontItem in TextFontSizeComboBox.Items)
+            {
+
+                int ff = int.Parse(((ComboBoxItem)fontItem).Content.ToString());
+                //ComboBoxItem ci = (ComboBoxItem)fontItem))ff.ToString();
+
+                
+                if (ff != null)
+                {
+                    if (ff == rttFontSize)
+                    {
+                        TextFontSizeComboBox.SelectedItem = fontItem;
+                        break;
+                    }
+                }
+            }
+            //*********************************************************
         }
 
         private void OnEnableRealTimeText(object sender, RoutedEventArgs e)
@@ -120,5 +144,27 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 ServiceManager.Instance.ChatService.UpdateRTTFontFamily(ff.Source);
             }
         }
+
+        private void OnTextFontSizeChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_initialized || App.CurrentAccount == null)
+                return;
+            //var ff = TextFontSizeComboBox.SelectedItem  ;
+            int ff = int.Parse(((ComboBoxItem)TextFontSizeComboBox.SelectedItem).Content.ToString());
+
+            if (ff != null)
+            {
+                if (App.CurrentAccount.RTTFontSize == ff)
+                    return;
+                App.CurrentAccount.RTTFontSize = ff;
+               ServiceManager.Instance.AccountService.Save();
+               ServiceManager.Instance.ChatService.UpdateRTTFontSize(ff);
+
+               // ServiceManager.Instance.ChatService.UpdateRTTFontSize(ff);
+            }
+        }
+        
+
+
     }
 }

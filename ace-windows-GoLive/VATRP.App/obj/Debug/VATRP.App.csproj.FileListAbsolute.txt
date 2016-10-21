@@ -138,11 +138,9 @@ C:\Users\User12\Desktop\Manoj\ace-windows-GoLive\VATRP.App\obj\Debug\com.vtcsecu
 C:\Users\User12\Desktop\Manoj\ace-windows-GoLive\VATRP.App\obj\Debug\VATRP.App.csproj.GenerateResource.Cache
 C:\Users\User12\Desktop\Manoj\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.exe
 C:\Users\User12\Desktop\Manoj\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.pdb
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.exe.config
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.exe
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.pdb
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\images\camera_disabled.jpg
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\log4net.config
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.exe.config
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.exe
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.pdb
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.Core.dll
@@ -278,3 +276,5 @@ C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\Views\S
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.g.resources
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\com.vtcsecure.ace.windows.Properties.Resources.resources
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\VATRP.App.csproj.GenerateResource.Cache
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.exe
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.pdb

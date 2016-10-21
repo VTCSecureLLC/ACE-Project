@@ -747,6 +747,9 @@ namespace VATRP.Core.Services
 
         public void PlayDtmf(char dtmf, int duration)
         {
+            //*********************************************************************************************************************
+            //Play sound when key pressed from Dialpad.
+            //*********************************************************************************************************************
             if (linphoneCore == IntPtr.Zero)
                 return;
             LinphoneAPI.linphone_core_play_dtmf(linphoneCore, dtmf, duration);

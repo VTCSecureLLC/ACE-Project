@@ -30,6 +30,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
+
         </Grid.RowDefinitions>
 
       
@@ -1838,10 +1839,10 @@
                 </videoWrapper:VATRPOverlay.OverlayCommandbarChild>
 
                 <videoWrapper:VATRPOverlay.OverlayOnHoldChild>
-                    <StackPanel x:Name="ImagePanel" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,0,0,0">
-                        <Image Source="/ACE;component/Resources/hold.png" Width="100" Height="25"></Image>
+                    <StackPanel x:Name="ImagePanel"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" Width="400">
+                        <Image Source="/ACE;component/Resources/hold.png"></Image>
                     </StackPanel>
-                    </videoWrapper:VATRPOverlay.OverlayOnHoldChild>
+                </videoWrapper:VATRPOverlay.OverlayOnHoldChild>
                 
                 <videoWrapper:VATRPOverlay.OverlayQualityIndicatorChild>
 

@@ -15,6 +15,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220*"/>
@@ -56,6 +59,36 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
+
+
+
+            <Label Grid.Column="0" Grid.Row="5" Content="Text Font Size" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left" Name="TextFontSizeLabel">
+            </Label>
+            <ComboBox Grid.Row="5" Grid.Column="1" x:Name="TextFontSizeComboBox" FontSize="14" Margin="0,3,0,3" 
+                       Width="130" Height="24"
+                     
+                      VerticalAlignment="Center" SelectionChanged="OnTextFontSizeChanged" >
+                <ComboBoxItem Content="12"/>
+                <ComboBoxItem Content="14"/>
+                <ComboBoxItem Content="16"/>
+                <ComboBoxItem Content="18"/>
+                <ComboBoxItem Content="20"/>
+                <ComboBoxItem Content="22"/>
+                <ComboBoxItem Content="24"/>
+                <ComboBoxItem Content="26"/>
+                <ComboBoxItem Content="28"/>
+                <ComboBoxItem Content="36"/>
+                <ComboBoxItem Content="48"/>
+                <ComboBoxItem Content="72"/>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontFamily="{Binding}" Height="20"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            
         </Grid>
     </Grid>
 </local:BaseUnifiedSettingsPanel>

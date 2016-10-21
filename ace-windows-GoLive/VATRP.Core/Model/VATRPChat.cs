@@ -25,6 +25,7 @@ namespace VATRP.Core.Model
         private string _typing_text;
         private List<string> _typingIdList;
         private uint _unreadMsgCount;
+        private int _messageFontSize;
         private string _messageFont;
         public int ChatUniqueID;
 
@@ -542,6 +543,16 @@ namespace VATRP.Core.Model
             {
                 _messageFont = value;
                 base.OnPropertyChanged("MessageFont");
+            }
+        }
+
+        public int MessageFontSize
+        {
+            get { return _messageFontSize; }
+            set
+            {
+                _messageFontSize = value;
+                base.OnPropertyChanged("MessageFontSize");
             }
         }
 

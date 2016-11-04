@@ -89,7 +89,7 @@ namespace com.vtcsecure.ace.windows
             _mainViewModel = new MainControllerViewModel();
             _mainViewModel.ActivateWizardPage = true;
             _mainViewModel.OfferServiceSelection = false;
-
+           
             _linphoneService = ServiceManager.Instance.LinphoneService;
             _linphoneService.RegistrationStateChangedEvent += OnRegistrationChanged;
             _linphoneService.CallStateChangedEvent += OnCallStateChanged;
@@ -879,8 +879,11 @@ namespace com.vtcsecure.ace.windows
                 ctrlCall.ctrlOverlay.NewCallAcceptWindowTopMargin = topleftInScreen.Y +
                                                                     (ctrlCall.ActualHeight -
                                                                      ctrlCall.ctrlOverlay.NewCallAcceptOverlayHeight)/2;
-
-                ctrlCall.ctrlOverlay.OnHoldOverlayWidth = 100; // (int)callViewDimensions.Width - 30;
+                //************************************************************************************************************************
+                //CHANGED FROM 100 TO 400 BY MK ON DATED 02-NOV-2016 FOR INCREASE THE SIZE OF HOLD IMAGE ON CALL WINDOW
+   
+                ctrlCall.ctrlOverlay.OnHoldOverlayWidth = 400; // (int)callViewDimensions.Width - 30; 
+                //*****************************************************************************************************************************
                 ctrlCall.ctrlOverlay.OnHoldWindowLeftMargin = topleftInScreen.X +
                                                               (callViewDimensions.Width -
                                                                ctrlCall.ctrlOverlay.OnHoldOverlayWidth)/2 + offset;
@@ -1365,6 +1368,7 @@ namespace com.vtcsecure.ace.windows
             //***************************************************************************************************************************************************
             if ((resourceInfo != null) && !string.IsNullOrEmpty(resourceInfo.address))
             {
+                 if (MessageBox.Show("Do you want to initiate a call?", "ACE", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 MediaActionHandler.MakeVideoCall(resourceInfo.address);
             }
         }

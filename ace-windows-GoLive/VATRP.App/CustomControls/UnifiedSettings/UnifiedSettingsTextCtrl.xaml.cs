@@ -134,7 +134,11 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
         {
             if (!_initialized || App.CurrentAccount == null)
                 return;
-            var ff = TextFontFamilyComboBox.SelectedItem as FontFamily;
+
+
+            var ff = new FontFamily(TextFontFamilyComboBox.Text);
+
+           // var ff = TextFontFamilyComboBox.SelectedItem as FontFamily;
             if (ff != null)
             {
                 if (App.CurrentAccount.RTTFontFamily == ff.Source)

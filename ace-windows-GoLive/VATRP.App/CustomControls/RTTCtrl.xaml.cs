@@ -38,8 +38,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
             // Initilize of RTTCtrl view. which was displaying on the right side of call window.
             //***************************************************************************************************************
             InitializeComponent();
-            pasteHandlerTimer.Tick += OnCheckPastedText;
-            DataObject.AddPastingHandler(MessageTextBox, PasteHandler);
+            //****************COMMENTED BY MK ON DATED 24-OCT-2016 FOR DISABLE PASTE HANDLER IN RTT
+           // pasteHandlerTimer.Tick += OnCheckPastedText;
+            //DataObject.AddPastingHandler(MessageTextBox, PasteHandler);
+            //***************************************************************************************
         }
 
         private void OnCheckPastedText(object sender, EventArgs e)
@@ -64,7 +66,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
             }
             else
             {
-                _viewModel.EnqueueInput(pasteText);
+                //_viewModel.EnqueueInput(pasteText);
+              
+               
             }
         }
 
@@ -157,7 +161,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 }
                 else
                 {
-                   // _viewModel.EnqueueInput(_viewModel.MessageText); 
+                    _viewModel.EnqueueInput(_viewModel.MessageText); // By MK on dated 24-Oct-2016 for Disable RTT and send message to user on "Send" button click.
                     _viewModel.EnqueueInput("\r");
                 }
             }

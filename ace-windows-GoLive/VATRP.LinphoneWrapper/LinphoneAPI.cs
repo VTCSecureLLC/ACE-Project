@@ -26,6 +26,7 @@ namespace VATRP.LinphoneWrapper
         public static int LINPHONE_CALL_STATS_VIDEO = 1;
         public static int LINPHONE_CALL_STATS_TEXT = 2;
 
+       
         #endregion
 
         #region Methods

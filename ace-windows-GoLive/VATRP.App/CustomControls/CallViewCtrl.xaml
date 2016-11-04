@@ -1838,9 +1838,16 @@
                     </Grid>
                 </videoWrapper:VATRPOverlay.OverlayCommandbarChild>
 
+                <!--<videoWrapper:VATRPOverlay.OverlayOnHoldChild>
+                        <StackPanel x:Name="ImagePanel"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" Height="100" Width="400">
+                            <Image Source="/ACE;component/Resources/hold.png"></Image>
+                        </StackPanel>
+                   
+                </videoWrapper:VATRPOverlay.OverlayOnHoldChild>-->
+
                 <videoWrapper:VATRPOverlay.OverlayOnHoldChild>
-                    <StackPanel x:Name="ImagePanel"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" Width="400">
-                        <Image Source="/ACE;component/Resources/hold.png"></Image>
+                    <StackPanel x:Name="ImagePanel" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,0,0,0">
+                        <Image Source="/ACE;component/Resources/hold.png" Width="400" Height="100"></Image>
                     </StackPanel>
                 </videoWrapper:VATRPOverlay.OverlayOnHoldChild>
                 

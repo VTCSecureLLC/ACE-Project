@@ -68,6 +68,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
             _simpleMessageViewModel.UnreadMessagesCountChanged += OnUnreadMesagesCountChanged;
             _callsViewModelList = new ObservableCollection<CallViewModel>();
             _linphoneService = ServiceManager.Instance.LinphoneService;
+            
             _dialpadHeight = 350;
         }
 

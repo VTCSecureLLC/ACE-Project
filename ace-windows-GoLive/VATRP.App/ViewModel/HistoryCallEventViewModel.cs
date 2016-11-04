@@ -57,7 +57,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
             else if (diffTime.Days < 8)
                 dateFormat = "ddd h:mm tt";
             else if (diffTime.Days > 365)
-                dateFormat = "dd/MM h:mm tt";
+                dateFormat = "dd/MM/yy h:mm tt";  //Added YY in date format by MK on dated 02-NOV-2016 TO DISPLAY YEAR IN CALL DATE
 
             CallDate = callTime.ToString(dateFormat);
         }

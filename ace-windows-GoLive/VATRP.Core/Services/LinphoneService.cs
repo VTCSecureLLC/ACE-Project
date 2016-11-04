@@ -430,6 +430,11 @@ namespace VATRP.Core.Services
                     // store contacts as vcard
                     LinphoneAPI.lp_config_set_int(coreConfig, "misc", "store_friends", 1);
 
+                    //********************************************************************************************************************
+                    // BY MK ON DATED 1-NOV-2016 FOR SET THE HISTORY LIMIT.
+                    LinphoneAPI.lp_config_set_int(coreConfig, "misc", "history_max_size", 1000);
+                    //********************************************************************************************************************
+
                     // VATRP-2130, prevent SIP spam
                     LinphoneAPI.lp_config_set_int(coreConfig, "sip", "sip_random_port", 1); // force to set random ports
                 }

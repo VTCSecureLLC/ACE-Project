@@ -86,15 +86,22 @@ namespace VATRP.Core.Services
         {
             if (manager.LinphoneService.LinphoneCore == IntPtr.Zero)
                 return;
+
+           
             AllCallsEvents.Clear();
             isLoadingCalls = true;
             IntPtr callsListPtr = LinphoneAPI.linphone_core_get_call_logs(manager.LinphoneService.LinphoneCore);
+            
+           
+
             if (callsListPtr != IntPtr.Zero)
             {
                 MSList curStruct;
 
                 do
                 {
+                    
+
                     curStruct.next = IntPtr.Zero;
                     curStruct.prev = IntPtr.Zero;
                     curStruct.data = IntPtr.Zero;
@@ -119,6 +126,7 @@ namespace VATRP.Core.Services
 
         private VATRPCallEvent ParseLinphoneCallLog(IntPtr callLogPtr)
         {
+            
             LinphoneCallDir direction = LinphoneAPI.linphone_call_log_get_dir(callLogPtr);
             IntPtr tmpPtr = LinphoneAPI.linphone_call_log_get_remote_address(callLogPtr);
             if (tmpPtr == IntPtr.Zero)

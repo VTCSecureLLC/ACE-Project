@@ -38,7 +38,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             {
                 Interval = 300
             };
-
+            //_viewModel.RemotePartyNumber = "Enter Contact Number/Name";
             timerHold.Tick += TimerHoldOnTick;
         }
 

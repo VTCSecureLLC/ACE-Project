@@ -59,16 +59,33 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void OnEventSelected(object sender, SelectionChangedEventArgs e)
         {
+            
 
             //***************************on click on contact name ******************************************************************
             // This method will called when user select a name or number in the list for a call. In both tab All/Missed call tab.
             //**********************************************************************************************************************
-            if (_callHistoryModel.SelectedCallEvent != null)
+
+          
+           
             {
-                if (MakeCallRequested != null)
-                    if (_callHistoryModel.SelectedCallEvent.CallEvent != null)
-                        MakeCallRequested(_callHistoryModel.SelectedCallEvent.CallEvent.RemoteParty);
-                _callHistoryModel.SelectedCallEvent = null;
+
+
+                if (_callHistoryModel.SelectedCallEvent != null)
+                {
+                    if (MakeCallRequested != null)
+                        if (_callHistoryModel.SelectedCallEvent.CallEvent != null)
+                        {
+                            //*************************************************************************************************************************************
+                            //  ADDED BY MK ON DATED 21-OCT-2016 FOR DISPLAY CONFIRMATION MESSAGE BEFORE CALL
+                            //*************************************************************************************************************************************
+                            if (MessageBox.Show("Do you want to initiate a call?", "ACE", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                            {
+                                MakeCallRequested(_callHistoryModel.SelectedCallEvent.CallEvent.RemoteParty);
+                            }
+                            // MakeCallRequested(_callHistoryModel.SelectedCallEvent.CallEvent.RemoteParty);
+                        }
+                    _callHistoryModel.SelectedCallEvent = null;
+                }
             }
         }
 

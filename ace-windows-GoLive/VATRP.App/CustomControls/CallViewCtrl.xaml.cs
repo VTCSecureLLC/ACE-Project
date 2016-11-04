@@ -96,7 +96,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             ctrlOverlay.CallsSwitchOverlayHeight = 200;
 
             ctrlOverlay.OnHoldOverlayWidth = 660;
-            ctrlOverlay.OnHoldOverlayHeight = 200;
+            ctrlOverlay.OnHoldOverlayHeight = 400;
 
             ctrlOverlay.QualityIndicatorOverlayHeight = 30;
             ctrlOverlay.QualityIndicatorOverlayWidth = 54;

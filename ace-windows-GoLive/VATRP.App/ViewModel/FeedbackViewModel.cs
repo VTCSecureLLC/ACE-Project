@@ -125,12 +125,20 @@ namespace com.vtcsecure.ace.windows.ViewModel
 //                {
 //                    await feedbackThread.PostFeedbackMessageAsync(FeedbackMessage, ContactEmailAddress, Subject, ContactName, attachmentList);
 //                }
-                viewModel.FeedbackResult = "Feedback sent";
+                 viewModel.FeedbackResult = "Feedback sent";
+                 
+                
+               
             }
             else
             {
                 viewModel.FeedbackResult = "Feedback send failed";
+               
             }
+            //*******************************************************************************************
+            // ADDED BY MK ON DATED 24-OCT-2016 FOR DISPLAY A MESSAGE BOX WHEN MESSAGE IS SENT OR FAILED.
+            //********************************************************************************************
+            MessageBox.Show(viewModel.FeedbackResult, "ACE", MessageBoxButton.OK);
         }
 
         // Liz E - the attachment does not seem to be working properly. a link is provided int eh feedback for the attachment but the data is not there.

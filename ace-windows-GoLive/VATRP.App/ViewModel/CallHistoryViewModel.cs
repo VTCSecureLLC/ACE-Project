@@ -175,7 +175,8 @@ namespace com.vtcsecure.ace.windows.ViewModel
         {
             if (_historyService.AllCallsEvents == null)
                 return;
-
+           
+           
             lock (this.Calls)
             {
                 var callsItemDB = from VATRPCallEvent call in _historyService.AllCallsEvents

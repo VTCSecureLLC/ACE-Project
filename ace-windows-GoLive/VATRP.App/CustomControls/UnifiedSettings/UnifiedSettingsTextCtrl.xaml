@@ -44,9 +44,24 @@
                    HorizontalAlignment="Left" Name="TextFontFamilyLabel">
             </Label>
             <ComboBox Grid.Row="2" Grid.Column="1" x:Name="TextFontFamilyComboBox" FontSize="14" Margin="0,3,0,3" 
-                       Width="130" Height="24"
-                      ItemsSource="{Binding Source={StaticResource AvailableFonts}}"
-                      VerticalAlignment="Center" SelectionChanged="OnTextFontChanged" >
+                       Width="130" Height="24"  VerticalAlignment="Center" SelectionChanged="OnTextFontChanged">
+                      <!--ItemsSource="{Binding Source={StaticResource AvailableFonts}}" >-->
+
+                <ComboBoxItem Content="Arial"/>
+                <ComboBoxItem Content="Arial Black"/>
+                <ComboBoxItem Content="Comic Sans MS"/>
+                <ComboBoxItem Content="Courier New"/>
+                <ComboBoxItem Content="Georgia"/>
+                <ComboBoxItem Content="Impact"/>
+                <ComboBoxItem Content="Times New Roman"/>
+                <ComboBoxItem Content="Verdana"/>
+                <ComboBoxItem Content="MS Sans Serif"/>
+                <ComboBoxItem Content="MS Serif"/>
+               
+                
+
+
+
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />

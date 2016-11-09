@@ -74,6 +74,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         public CallViewCtrl()
         {
+           
 
             //****************************************************************************************************************
             // This method is called When Call screen initilize.
@@ -234,6 +235,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             {
                 ServiceManager.Instance.LinphoneService.SetVideoCallWindowHandle(ctrlVideo.GetVideoControlPtr);
                 ctrlVideo.Visibility = Visibility.Visible;
+                //ctrlVideo.
             }
             catch (Exception ex)
             {
@@ -451,13 +453,35 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
         private void SwitchCall(object sender, RoutedEventArgs e)
         {
+            bool value = false;
+
             if (_parentViewModel != null)
             {
-                if (!_parentViewModel.SwitchCall(_backgroundCallViewModel, _viewModel))
+                value = _parentViewModel.SwitchCall(_backgroundCallViewModel, _viewModel);
+                if (!value)
                 {
                     if (SwitchHoldCallsRequested != null)
                         SwitchHoldCallsRequested(this, EventArgs.Empty);
+                    //this.CallSwapLabel.Text = "Switching the call to user Mitesh";
                 }
+
+                if (value)
+                {
+                    //var textBlock = FindChild<TextBlock>(callInfoWindow.TransparentWindow, "CallDurationLabel");
+                    //if (textBlock != null)
+                    //{
+                    //    textBlock.Text = str;
+                    //}
+
+                }
+                    //this.CallSwapLabel.Text = "Switching the call to user Mitesh";
+                    
+                //}
+                //if (!_parentViewModel.SwitchCall(_backgroundCallViewModel, _viewModel))
+                //{
+                //    if (SwitchHoldCallsRequested != null)
+                //        SwitchHoldCallsRequested(this, EventArgs.Empty);
+                //}
             }
         }
 

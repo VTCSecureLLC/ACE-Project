@@ -826,6 +826,7 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
                 ctrlCall.ctrlOverlay.ShowQualityIndicatorWindow(false);
                 ctrlCall.ctrlOverlay.ShowEncryptionIndicatorWindow(false);
                 ctrlCall.ctrlOverlay.ShowInfoMsgWindow(false);
+                ctrlCall.ctrlOverlay.ShowCallsSwitchWindow(false);
             }
 		}
 
@@ -845,6 +846,8 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
             ctrlCall.ctrlOverlay.ShowCallsSwitchWindow(bShow);
             if (!bShow)
                 ctrlCall.ctrlOverlay.StopPausedCallTimer();
+
+           
         }
 
 		private void OnRegistrationChanged(LinphoneRegistrationState state, LinphoneReason reason)

@@ -2564,7 +2564,7 @@ namespace VATRP.Core.Services
                     //**********************************************************************************************
                     // When call is not null. Incoming and Outgoing both calls.
                     //********************************************************************************************
-		            call.LinphoneMessage = message;
+		            call.LinphoneMessage =  message;
 		            call.CallState = newstate;
 
                     if (call.CallState == VATRPCallState.Error || call.CallState == VATRPCallState.Closed)

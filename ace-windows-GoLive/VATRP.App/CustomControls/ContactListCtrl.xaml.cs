@@ -70,8 +70,9 @@ namespace com.vtcsecure.ace.windows.CustomControls
                     if (MessageBox.Show("Do you want to initiate a call?", "ACE", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         MakeCallRequested(_contactsViewModel.SelectedContact.Contact.RegistrationName);
-                        _contactsViewModel.SelectedContact = null;
+                        
                     }
+                _contactsViewModel.SelectedContact = null;
             }
         }
 

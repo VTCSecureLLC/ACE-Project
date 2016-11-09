@@ -595,6 +595,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
                 activeCallViewModel.ActiveCall.NativeCallPtr, pausedCallViewModel.CallerInfo,
                 pausedCallViewModel.ActiveCall.NativeCallPtr));
 
+
+           
+
             if (activeCallViewModel.CallState == VATRPCallState.LocalPaused && activeCallViewModel.PauseRequest)
             {
                 if (pausedCallViewModel.CallState == VATRPCallState.LocalPaused && pausedCallViewModel.PauseRequest)
@@ -603,7 +606,15 @@ namespace com.vtcsecure.ace.windows.ViewModel
             }
             else
             {
+
+                //var textBlock =   FindChild<TextBlock>(newCallAcceptWindow.TransparentWindow, "NewCallerInfoLabel");
+                //if (textBlock != null)
+                //    textBlock.Text = callerInfo;
+               // ShowNewCallSwapWindow(true);
+
                 PauseCall(activeCallViewModel);
+                
+               
             }
             return true;
         }

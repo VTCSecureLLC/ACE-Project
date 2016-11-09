@@ -28,6 +28,9 @@ namespace VATRP.Linphone.VideoWrapper
         private QualityIndicator _lastQuality = QualityIndicator.Unknown;
         private MediaEncryptionIndicator _lastEncryption = MediaEncryptionIndicator.None;
 
+        private Boolean hideSwapLabel = false;
+        private int durationHideLabel = 0;
+
         public VATRPOverlay()
         {
             commandBarWindow = new VATRPTranslucentWindow(this);
@@ -308,8 +311,42 @@ namespace VATRP.Linphone.VideoWrapper
         {
             var textBlock =
                 FindChild<TextBlock>(callInfoWindow.TransparentWindow, "CallerInfoLabel");
+
+
+            
             if (textBlock != null)
+            {
+                if (textBlock.Text != null && textBlock.Text != "Test Call" && textBlock.Text != "")
+                {
+
+                    if (textBlock.Text != callerInfo)
+                    {
+                        //if(_linphoneService.GetActiveCallsCount == 2)
+                        SetCallSwap(textBlock.Text, callerInfo);
+                    }
+                    else
+                    {
+                        var textBlock1 =
+              FindChild<TextBlock>(callInfoWindow.TransparentWindow, "CallSwapLabel");
+                        if (textBlock1 != null)
+                        {
+                            textBlock1.Text = "";
+                            textBlock1.Visibility = Visibility.Hidden;
+                        }
+                    }
+                    
+                   
+                }
                 textBlock.Text = callerInfo;
+
+            }
+                
+
+            //if (textBlock != null)
+            //    textBlock.Text = "Hello " + callerInfo;
+
+
+
         }
 
         public void SetCallState(string callState)
@@ -335,9 +372,31 @@ namespace VATRP.Linphone.VideoWrapper
         {
             _foregroundCallDuration = 0;
             if (_timerCall != null && _timerCall.Enabled)
+            {
                 _timerCall.Stop();
+                var textBlock =
+               FindChild<TextBlock>(callInfoWindow.TransparentWindow, "CallerInfoLabel");
+                if (textBlock != null)
+                {
+                    textBlock.Text = "";
+                }
+            }
         }
 
+
+        private void SetCallSwap(string oldCall, string newCall)
+        {
+            var textBlock =
+               FindChild<TextBlock>(callInfoWindow.TransparentWindow, "CallSwapLabel");
+            if (textBlock != null)
+            {
+                textBlock.Visibility = Visibility.Visible;
+                textBlock.Text = "Call Swapped from " + oldCall +  " to " +  newCall;
+                Console.WriteLine(_foregroundCallDuration);
+                hideSwapLabel = true;
+                durationHideLabel = _foregroundCallDuration + 10;
+            }
+        }
         private void OnUpdatecallTimer(object sender, ElapsedEventArgs e)
         {
 
@@ -378,7 +437,20 @@ namespace VATRP.Linphone.VideoWrapper
                 FindChild<TextBlock>(callInfoWindow.TransparentWindow, "CallDurationLabel");
             if (textBlock != null)
             {
-                textBlock.Text = str;
+                textBlock.Text =   str;
+            }
+
+            if (ForegroundCallDuration > durationHideLabel)
+            {
+                var textBlock1 =
+               FindChild<TextBlock>(callInfoWindow.TransparentWindow, "CallSwapLabel");
+                if (textBlock1 != null && hideSwapLabel)
+                {
+                    textBlock1.Visibility = Visibility.Hidden;
+                    hideSwapLabel = false;
+
+
+                }
             }
         }
 
@@ -731,6 +803,18 @@ namespace VATRP.Linphone.VideoWrapper
                 newCallAcceptWindow.UpdateWindow();
         }
 
+
+        public object OverlayNewCallSwap
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+
+            }
+        }
         public object OverlayNewCallAcceptChild
         {
             get

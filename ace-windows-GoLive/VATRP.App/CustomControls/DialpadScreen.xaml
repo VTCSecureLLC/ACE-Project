@@ -36,6 +36,13 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
+            <Label Name="RemotePartyNumberPlaceHolder" FontSize="19"  Grid.Column="0"  Margin="1,5,0,0"
+                      BorderThickness="0" Background=" Transparent" Content="Enter Number/User Name" Foreground="Gray"/>
+                
+            
+          
+            
             <TextBox Text="{Binding RemotePartyNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource DialpadPageRemotePartyFont}"  
                      FontSize="35" MaxLines="1" Grid.Column="0" CaretBrush="White" Margin="5,0,0,0"
                      AcceptsReturn="False" BorderThickness="0" Background="Transparent"

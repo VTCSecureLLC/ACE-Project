@@ -38,7 +38,6 @@ namespace com.vtcsecure.ace.windows.CustomControls
             {
                 Interval = 300
             };
-            //_viewModel.RemotePartyNumber = "Enter Contact Number/Name";
             timerHold.Tick += TimerHoldOnTick;
         }
 
@@ -46,6 +45,8 @@ namespace com.vtcsecure.ace.windows.CustomControls
         {
             DataContext = viewModel;
             _viewModel = viewModel;
+            //_viewModel.RemotePartyNumber = "Enter Number or User Name";
+
         }
 
         #region KeyPad
@@ -56,6 +57,8 @@ namespace com.vtcsecure.ace.windows.CustomControls
             //************************************* DialPad key press event ****************************************************
             // This event will called when dial button (1-9) will tapped for dial pad.
             //******************************************************************************************************************
+
+            RemoveIfPlaceHolderTextExist();
             int oldNumberLendth = _viewModel.RemotePartyNumber.Length;
             var key = DialpadKey.DialpadKey_KeyNone;
 
@@ -150,11 +153,22 @@ namespace com.vtcsecure.ace.windows.CustomControls
             // This event will called when backspace button is tapped and it will remove the digit that is enter in last. 
             // It remove only when there is more than 0 characters or numbers.
             //*****************************************************************************************************************************************************
+
+            //RemoveIfPlaceHolderTextExist();
             if (!String.IsNullOrEmpty(_viewModel.RemotePartyNumber))
             {
                 _viewModel.RemotePartyNumber = _viewModel.RemotePartyNumber.Substring(0,
                     _viewModel.RemotePartyNumber.Length - 1);
+
+                if (_viewModel.RemotePartyNumber == "")
+                {
+                    this.RemotePartyNumberPlaceHolder.Visibility = Visibility.Visible;
+                }
+
             }
+
+
+           
         }
 
         private void OnPlusPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -181,6 +195,17 @@ namespace com.vtcsecure.ace.windows.CustomControls
             //***********************************************************************************************************************************************
             // When DialPad is visible over Call Window and any key pressed from keyboard then this event will called. Key may be numeric or char.
             //***********************************************************************************************************************************************
+
+            if (_viewModel.RemotePartyNumber.Length > 0)
+            {
+                RemoveIfPlaceHolderTextExist();
+            }
+            else
+            {
+                this.RemotePartyNumberPlaceHolder.Visibility = Visibility.Visible;
+
+            }
+
             if (e.Key != Key.Enter)
                 return;
             try
@@ -208,8 +233,18 @@ namespace com.vtcsecure.ace.windows.CustomControls
             //**********************************************************************************************
             // This method will called when any Keypress in Dialpad from System keyboard.
             //**********************************************************************************************
+          
+            
+
             if (e.Key == Key.Enter)
                 e.Handled = true; // prevent further processing
+        }
+
+        private void RemoveIfPlaceHolderTextExist()
+        {
+
+            this.RemotePartyNumberPlaceHolder.Visibility = Visibility.Hidden;
+            
         }
     }
 }

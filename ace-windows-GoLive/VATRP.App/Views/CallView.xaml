@@ -19,6 +19,8 @@
                    MinHeight="300"
                    MinWidth="380"
                    >
+
     <Grid>
+       
     </Grid>
 </model:VATRPWindow>

@@ -20,8 +20,10 @@
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="Deaf/Hard of Hearing Resources" VerticalContentAlignment="Center" Background="Gray" Name="Resources">
         </Label>
 
+        <!--Background="{StaticResource RecentsPageMainBg}"-->
+        
         <ListView Background="{StaticResource RecentsPageMainBg}" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" MinHeight="200" Width="300" HorizontalAlignment="Left"
-                      x:Name="ResourceInfoListView" SelectionMode="Single" SelectionChanged="ResourceInfo_SelectionChanged">
+                      x:Name="ResourceInfoListView" SelectionMode="Single" SelectionChanged="ResourceInfo_SelectionChanged" TouchDown="ResourceInfoListView_TouchDown" PreviewMouseLeftButtonDown="ResourceInfoListView_PreviewMouseLeftButtonDown" PreviewMouseUp="ResourceInfoListView_PreviewMouseUp">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="95" DisplayMemberBinding="{Binding Path=name}" />

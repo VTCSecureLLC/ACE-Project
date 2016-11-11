@@ -166,6 +166,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 }
 
             }
+            else
+            {
+                this.RemotePartyNumberPlaceHolder.Visibility = Visibility.Visible;
+            }
 
 
            
@@ -240,11 +244,33 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 e.Handled = true; // prevent further processing
         }
 
-        private void RemoveIfPlaceHolderTextExist()
+
+        /// <summary>
+        /// *****************************************************************
+        /// ADDED THESE METHODS BY MK ON DATED 10-NOV-2016 FOR HIDE/SHOW REMOTE PARTY NUMBER
+        /// </summary>
+        public void RemoveIfPlaceHolderTextExist()
         {
 
             this.RemotePartyNumberPlaceHolder.Visibility = Visibility.Hidden;
             
         }
+
+        public void ShowPlaceHolderText()
+        {
+
+            this.RemotePartyNumberPlaceHolder.Visibility = Visibility.Visible;
+
+        }
+
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_viewModel.RemotePartyNumber == string.Empty)
+            {
+                this.RemotePartyNumberPlaceHolder.Visibility = Visibility.Visible;
+            }
+        }
+        //**************************************************************************
     }
 }

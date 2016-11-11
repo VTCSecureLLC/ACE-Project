@@ -132,14 +132,17 @@ namespace com.vtcsecure.ace.windows
             if (isChecked)
             {
                 CloseDialpadAnimated();
+                
                 _mainViewModel.IsContactDocked = false;
                 _mainViewModel.IsSettingsDocked = false;
                 _mainViewModel.IsResourceDocked = false;
                 _mainViewModel.IsMenuDocked = false;
                 _mainViewModel.HistoryModel.ResetLastMissedCallTime();
                 _mainViewModel.UIMissedCallsCount = 0;
+                
             }
             _mainViewModel.IsCallHistoryDocked = isChecked;
+            _mainViewModel._dialPadViewModel.RemotePartyNumber = ""; //BY MK ON DATED 10-NOV-2016 FOR CLEAR FILTER NUMBER IN DIALPAD SCREEN.
         }
 
         private void btnContacts_Click(object sender, RoutedEventArgs e)
@@ -156,6 +159,9 @@ namespace com.vtcsecure.ace.windows
                 _mainViewModel.IsSettingsDocked = false;
                 _mainViewModel.IsResourceDocked = false;
                 _mainViewModel.IsMenuDocked = false;
+                _mainViewModel._dialPadViewModel.RemotePartyNumber = ""; //BY MK ON DATED 10-NOV-2016 FOR CLEAR FILTER NUMBER IN DIALPAD SCREEN.
+               // _mainViewModel._dialPadViewModel.
+                //_mainViewModel._dialPadViewModel.RemotePartyNumber
             }
             _mainViewModel.IsContactDocked = isChecked;
         }
@@ -1370,6 +1376,7 @@ namespace com.vtcsecure.ace.windows
             {
                  if (MessageBox.Show("Do you want to initiate a call?", "ACE", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 MediaActionHandler.MakeVideoCall(resourceInfo.address);
+               //  resourceInfo.address = null;
             }
         }
 
@@ -1428,6 +1435,7 @@ namespace com.vtcsecure.ace.windows
             IsSlidingDialpad = true;
             _mainViewModel.DialpadHeight = 1;
             _mainViewModel.IsDialpadDocked = true;
+            //_mainViewModel.ShowVideomailIndicator
             var s = (Storyboard)Resources["SlideUpAnimation"];
 
             if (s != null)

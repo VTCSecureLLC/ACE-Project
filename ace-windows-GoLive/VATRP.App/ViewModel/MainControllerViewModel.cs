@@ -29,7 +29,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         private bool _activateWizardPage;
         private double _dialpadHeight;
 
-        private DialpadViewModel _dialPadViewModel;
+        public DialpadViewModel _dialPadViewModel; //From private to Public by MK on dated 10-NOV-2016 for access in MainWindow to remove old filter number.
         private CallHistoryViewModel _historyViewModel;
         private LocalContactViewModel _contactViewModel;
         private SimpleMessagingViewModel _simpleMessageViewModel;

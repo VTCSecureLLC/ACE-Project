@@ -112,6 +112,48 @@ namespace com.vtcsecure.ace.windows.CustomControls.Resources
 
         private void ResourceInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //var selectedItem = ResourceInfoListView.SelectedItem;
+            //if (selectedItem != null)
+            //{
+            //    ResourceInfo resourceInfo = (ResourceInfo)selectedItem;
+            //    Console.WriteLine("Resource Selected: Name=" + resourceInfo.name + " Address=" + resourceInfo.address);
+            //   // OnCallResourceRequested(resourceInfo);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No selected resource available");
+            //}
+            //selectedItem = null;
+            //ResourceInfoListView.SelectedItem = null;
+
+         
+        }
+
+        private void ResourceInfoListView_TouchDown(object sender, TouchEventArgs e)
+        {
+            
+        }
+
+        private void ResourceInfoListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+           
+           // ResourceInfoListView.SelectedItem = null;
+        }
+
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            if (item != null && item.IsSelected)
+            {
+               
+                //Do your stuff
+            }
+
+           
+        }
+
+        private void ResourceInfoListView_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
             var selectedItem = ResourceInfoListView.SelectedItem;
             if (selectedItem != null)
             {
@@ -123,7 +165,15 @@ namespace com.vtcsecure.ace.windows.CustomControls.Resources
             {
                 Console.WriteLine("No selected resource available");
             }
+            selectedItem = null;
+            ResourceInfoListView.SelectedItem = null;
         }
+
+        //private void ResourceInfoListView_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    ResourceInfoListView.SelectedItem = null;
+        //    return;
+        //}
 
     }
 }

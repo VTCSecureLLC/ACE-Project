@@ -46,7 +46,7 @@
             <TextBox Text="{Binding RemotePartyNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource DialpadPageRemotePartyFont}"  
                      FontSize="35" MaxLines="1" Grid.Column="0" CaretBrush="White" Margin="5,0,0,0"
                      AcceptsReturn="False" BorderThickness="0" Background="Transparent"
-                             CharacterCasing="Lower" />
+                             CharacterCasing="Lower" TextChanged="TextBox_TextChanged" />
             <Rectangle  Width="45" Fill="White" Height="30" Margin="10" Grid.Column="1" PreviewMouseUp="OnBackSpaceClicked">
                 <Rectangle.OpacityMask>
                     <ImageBrush ImageSource="/ACE;component/Resources/backspace.png" Stretch="UniformToFill"/>

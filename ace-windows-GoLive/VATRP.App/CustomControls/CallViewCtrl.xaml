@@ -1882,8 +1882,8 @@
 
                 <videoWrapper:VATRPOverlay.OverlayOnHoldChild>
                     <StackPanel x:Name="ImagePanel" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,0,0,0">
-                        <Image Source="/ACE;component/Resources/hold.png" Width="400" Height="100"></Image>
-                        <!--<Image gif:ImageBehavior.AnimatedSource="C:\Users\User12\Desktop\100.gif"></Image>-->
+                        <!--<Image Source="/ACE;component/Resources/hold.png" Width="400" Height="100"></Image>-->
+                        <Image gif:ImageBehavior.AnimatedSource="/ACE;component/Resources/hold.gif"></Image>
 
                         
                     </StackPanel>

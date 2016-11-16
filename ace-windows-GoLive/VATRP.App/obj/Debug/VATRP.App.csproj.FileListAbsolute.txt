@@ -149,7 +149,6 @@ C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\HockeyA
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\HockeyAppPCL.dll
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\log4net.dll
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\VATRP.Linphone.VideoWrapper.dll
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\WpfAnimatedGif.dll
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\System.Data.SQLite.dll
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\VATRP.Linphone.VideoWrapper.pdb
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.Core.pdb
@@ -158,7 +157,6 @@ C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\HockeyA
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\HockeyApp.xml
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\HockeyAppPCL.pdb
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\HockeyAppPCL.xml
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\WpfAnimatedGif.xml
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\System.Data.SQLite.xml
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\VATRP.App.csprojResolveAssemblyReference.cache
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\CustomControls\Resources\ResourcePanel.baml

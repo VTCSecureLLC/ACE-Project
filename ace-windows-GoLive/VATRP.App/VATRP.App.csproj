@@ -91,9 +91,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="WpfAnimatedGif">
-      <HintPath>..\..\..\WpfAnimatedGif-1.4.13\WpfAnimatedGif.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -213,6 +210,7 @@
     <Compile Include="Enums\VATRPSettings.cs" />
     <Compile Include="Json\JsonFactoryConfig.cs" />
     <Compile Include="Model\ActionCommand.cs" />
+    <Compile Include="Model\GifImage.cs" />
     <Compile Include="Services\Win32NativeAPI.cs" />
     <Compile Include="Utilities\ConfigLookup.cs" />
     <Compile Include="Utilities\JsonDeserializer.cs" />

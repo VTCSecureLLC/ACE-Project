@@ -9,7 +9,7 @@
 			 xmlns:controls="clr-namespace:com.vtcsecure.ace.windows.CustomControls"
 			 xmlns:videoWrapper="clr-namespace:VATRP.Linphone.VideoWrapper;assembly=VATRP.Linphone.VideoWrapper"
 			 x:Class="com.vtcsecure.ace.windows.CustomControls.CallViewCtrl"
-             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             xmlns:valRule="clr-namespace:com.vtcsecure.ace.windows.Model"
 			 mc:Ignorable="d" 
 			 d:DesignWidth="700" d:DesignHeight="700"
             MinWidth="700"
@@ -1883,9 +1883,9 @@
                 <videoWrapper:VATRPOverlay.OverlayOnHoldChild>
                     <StackPanel x:Name="ImagePanel" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,0,0,0">
                         <!--<Image Source="/ACE;component/Resources/hold.png" Width="400" Height="100"></Image>-->
-                        <Image gif:ImageBehavior.AnimatedSource="/ACE;component/Resources/hold.gif"></Image>
+                        <!--<Image gif:ImageBehavior.AnimatedSource="/ACE;component/Resources/hold.gif"></Image>-->
 
-                        
+                        <controls:GifImage x:Name="gifImage" Stretch="None" GifSource="/ACE;component/Resources/hold.gif" AutoStart="True" />
                     </StackPanel>
                 </videoWrapper:VATRPOverlay.OverlayOnHoldChild>
                 

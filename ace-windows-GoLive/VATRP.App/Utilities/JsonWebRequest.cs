@@ -108,5 +108,64 @@ namespace com.vtcsecure.ace.windows.Utilities
                 }            
             }
         }
+
+
+
+
+
+        public static string MakeJsonWebRequest(string webRequestUrl)
+        {
+
+            //****************************************************************************************************************************************
+            //This method call a Web Request on provide URL and RETURN A JSON RESPONSE
+            // THIS METHOD IS CREATED BY MK ON DATED 13-12-2016
+            //****************************************************************************************************************************************
+            WebResponse response = null;
+            try
+            {
+                // create a request
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(webRequestUrl);
+                request.KeepAlive = false;
+                request.ContentLength = 0;
+                request.Method = "GET";
+                request.Timeout = 30000;
+
+                response = request.GetResponse();
+                String jsonResults = "";
+                using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                {
+                    jsonResults = sr.ReadToEnd();
+                    sr.Close();
+                }
+
+                try
+                {
+                    // deserialize json to ResourceInfo List
+                    //T item = JsonDeserializer.JsonDeserialize<T>(jsonResults.ToString());
+                    //return item;
+
+                   return (jsonResults.ToString());
+                }
+                catch (Exception ex)
+                {
+                    throw new JsonException(JsonExceptionType.DESERIALIZATION_FAILED, "Failed to parse json response. Details: " + ex.Message, ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new JsonException(JsonExceptionType.CONNECTION_FAILED, "Failed to get json information. Details: " + ex.Message, ex);
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Close();
+                    response = null;
+                }
+            }
+        }
+
+
+
     }
 }

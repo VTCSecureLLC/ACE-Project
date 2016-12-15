@@ -1,0 +1,4 @@
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\bin\Release\ACE.LinphoneWrapper.dll
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\bin\Release\ACE.LinphoneWrapper.pdb
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\obj\Release\ACE.LinphoneWrapper.dll
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\obj\Release\ACE.LinphoneWrapper.pdb

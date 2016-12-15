@@ -188,7 +188,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
                     var contact = ServiceManager.Instance.ContactService.FindContact(new ContactID(model.ContactSipAddress, IntPtr.Zero));
                     if (contact != null && contact.Fullname == model.ContactName)
                         return;
-
+                    
                     ServiceManager.Instance.ContactService.AddLinphoneContact(model.ContactName, model.ContactSipUsername,
                         model.ContactSipAddress);
                 }

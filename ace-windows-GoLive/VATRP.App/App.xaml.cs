@@ -14,6 +14,13 @@ using HockeyApp;
 using System.Threading;
 using com.vtcsecure.ace.windows.Views;
 
+using com.vtcsecure.ace.windows.Utilities;
+using Newtonsoft.Json;
+using VATRP.Core.Model.Utils;
+using VATRP.Core;
+using System.Net;
+using System.ComponentModel;
+using System.Configuration;
 namespace com.vtcsecure.ace.windows
 {
     /// <summary>
@@ -40,6 +47,9 @@ namespace com.vtcsecure.ace.windows
         internal static bool AppClosing { get; set; }
         #endregion
 
+
+        AppVersion[] appVersionArray;
+
         public App()
         {
             Mutex testmutex;
@@ -51,6 +61,9 @@ namespace com.vtcsecure.ace.windows
                 return;
             }
             mutex = new Mutex(true, "Global\\84D29A79-09A3-4CBF-A12A-B15CEF971672");
+
+           
+
         }
         protected override async void OnStartup(StartupEventArgs e)
         {
@@ -60,6 +73,7 @@ namespace com.vtcsecure.ace.windows
             // The overridden method must call OnStartup in the base class if the Startup event needs to be raised.
             //************************************************************************************************************************************
             base.OnStartup(e);
+            CheckNewVersionAvailable();
 
             //main configuration of HockeySDK
             HockeyClient.Current.Configure(HOCKEYAPP_ID);
@@ -197,6 +211,34 @@ namespace com.vtcsecure.ace.windows
             // This method will called when user quit the application. "On Application Exit"
             //************************************************************************************************************************
             mutex.Dispose();
+
+            if (System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Build.ToString() != appVersionArray[0].Version)
+            {
+                InstallBuild();
+                System.Environment.Exit(1);
+               
+            }
+            
+
+
+
+        }
+
+        private void InstallBuild()
+        {
+            var appDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+
+            if (System.IO.File.Exists(appDirectory + "\\Setup_" + appVersionArray[0].Version.ToString() + ".exe"))
+            {
+                Process process = Process.Start(appDirectory + "\\Setup_" + appVersionArray[0].Version.ToString() + ".exe");
+                int id = process.Id;
+                Process tempProc = Process.GetProcessById(id);
+                //tempProc.Visible = false;
+                // tempProc.WaitForExit();
+
+
+                //tempProc.Visible = true;
+            }
         }
 
         private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
@@ -204,5 +246,138 @@ namespace com.vtcsecure.ace.windows
             if (_log != null)
                 _log.Error("Not handled exception: " + e.Exception.ToString() + "\n" + e.Exception.StackTrace);
         }
+
+        private bool CheckNewVersionAvailable()
+        {
+
+            string response = Utilities.JsonWebRequest.MakeJsonWebRequest("http://isolherbal.com/Ace/version.json");
+
+            //using System.Data;
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            var version = assembly.GetName().Version;
+
+            string appVersion= string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
+
+
+          
+
+
+            appVersionArray = JsonConvert.DeserializeObject<AppVersion[]>(response);
+            var appDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            if (appVersion != appVersionArray[0].Version)
+            {
+                if (!System.IO.File.Exists(appDirectory + "\\Setup_" + appVersionArray[0].Version.ToString() + ".exe"))
+                {
+                    DownloadInstaller(appVersionArray[0].Path, appVersionArray[0].Version);
+                }
+                else
+                {
+                    long length = new System.IO.FileInfo(appDirectory + "\\Setup_" + appVersionArray[0].Version.ToString() + ".exe").Length;
+                    if (length / 1024 != appVersionArray[0].Size)
+                    {
+                        DownloadInstaller(appVersionArray[0].Path, appVersionArray[0].Version);
+                    }
+                    else
+                    {
+                        //NEW VERSION ALREADY DOWNLOADED and ONLY NEED TO INSTALL
+
+                        if (MessageBox.Show("New version of ACE is available. Do you wish to install? You would be required to restart your application.", "ACE", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                           // App_OnExit(null, null);
+                            InstallBuild();
+                            System.Environment.Exit(1);
+
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                if (!System.IO.File.Exists(appDirectory + "\\Setup_" + appVersionArray[0].Version.ToString() + ".exe"))
+                {
+                    System.IO.File.Delete(appDirectory + "\\Setup_" + appVersionArray[0].Version.ToString() + ".exe");
+                }
+               
+            }
+             //var table = JsonConvert.DeserializeObject<Array>(response);
+            //List<VATRPDomain> domains = Utilities.JsonWebRequest.MakeJsonWebRequest<List<VATRPDomain>>("http://isolherbal.com/Ace/version.json"); 
+             //DataRow dr = table.Rows(0);
+
+            //Utilities.JsonWebRequest.MakeJsonWebRequest<List<VATRPDomain>>(CDN_DOMAIN_URL); 
+
+            return true;
+        }
+
+        private void DownloadInstaller(string path, string version){
+
+            var appDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+
+            System.Net.ServicePointManager.Expect100Continue = true;
+
+            WebClient downloader = new WebClient();
+           
+            downloader.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_DownloadFileCompleted);
+            downloader.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+            downloader.DownloadFileAsync(new Uri(path), appDirectory + "\\Setup_" + version + ".exe");
+            //downloader.DownloadFileAsync(new Uri(path), "G:\\Setup_"+ version +".exe");
+            //downloader.DownloadFileAsync(new Uri("http://192.168.5.132/mit/setup.exe"), "G:\\Setup_" + version + ".exe");
+           // downloader.DownloadFileAsync(new Uri(path), System.IO.Path.GetTempPath() + "\\" + System.IO.Path.GetFileName(path));
+            //var downloadHelper = new HttpDownloadHelper();
+           
+            //downloadHelper.DownloadCompleted += OnDownloadCompleted;
+            //ThreadPool.QueueUserWorkItem((x) => downloadHelper.DownloadImage(path, "G:\\ABC1.exe"));
+
+        }
+
+        void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e) {
+
+            if (e.Error != null)
+            {
+                Console.WriteLine("Completed" + e.Error );
+                CheckNewVersionAvailable();
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("New version of ACE is available. Do you wish to install? You would be required to restart your application.", "ACE", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+
+                    System.Environment.Exit(1);
+                    //App_OnExit(null, null);
+
+                }
+                Console.WriteLine("Completed");
+            }
+            
+        }
+
+        private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            Console.WriteLine("Download %:" + e.ProgressPercentage);
+           // Console.WriteLine("Download %:" + e.);
+        }
+
+
+        private void OnDownloadCompleted(object sender, VATRP.Core.Events.HttpDownloadEventArgs e)
+        {
+            Console.WriteLine("Download completed: " + e.Succeeded + " " + e.URI);
+        }
+
     }
+
+
+
+    public class AppVersion
+    {
+        public string Version { get; set; }
+        public string Date { get; set; }
+        public string Path { get; set; }
+        public long Size { get; set; }
+    }
+
+  
 }
+
+
+

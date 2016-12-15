@@ -1,0 +1,17 @@
+﻿<model:VATRPWindow x:Class="com.vtcsecure.ace.windows.Views.Dialpad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:customControls="clr-namespace:com.vtcsecure.ace.windows.CustomControls"
+        xmlns:model="clr-namespace:com.vtcsecure.ace.windows.Model"
+        Title="Dialpad" Height="450" Width="400" 
+                   Activated="Window_Activated" 
+                   Closing="Window_Closing" 
+                   StateChanged="Window_StateChanged" 
+                   LocationChanged="Window_LocationChanged" 
+                   SourceInitialized="Window_Initialized"
+                   Loaded="Window_Loaded"
+                   Unloaded="Window_Unloaded" SizeChanged="Window_SizeChanged" Icon="/ACE;component/Resources/dialpad.png">
+    <Grid>
+        <customControls:DialPadScreen x:Name="ctrlDialpad" Height="Auto" Width="Auto" Margin="0"/>
+    </Grid>
+</model:VATRPWindow>

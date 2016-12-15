@@ -226,7 +226,7 @@ namespace VATRP.Core.Model.Utils
                     Stream responseStream = myRequestState.response.GetResponseStream();
 
                     myRequestState.streamResponse = responseStream;
-
+                   
 
                     if (responseStream != null)
                     {

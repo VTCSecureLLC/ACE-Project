@@ -149,7 +149,7 @@
           ItemsSource="{Binding Providers}" Style="{StaticResource ProviderComboStyle}" 
                   BorderBrush="{StaticResource AppMainWindowBrush}" 
                   Background="{StaticResource AppMainWindowBrush}" 
-                  Foreground="{StaticResource AppMainBorderBrush}"
+                  Foreground="{StaticResource AppMainBorderBrush}" SelectionChanged="ComboBox_SelectionChanged"
                   >
             <ComboBox.Resources>
             </ComboBox.Resources>

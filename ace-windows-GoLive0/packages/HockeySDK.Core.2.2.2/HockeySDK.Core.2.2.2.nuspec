@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HockeySDK.Core</id>
+    <version>2.2.2</version>
+    <title>HockeySDK.Core</title>
+    <authors>Bit Stadium GmbH</authors>
+    <owners>Bit Stadium GmbH</owners>
+    <licenseUrl>https://github.com/bitstadium/HockeySDK-Windows/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/bitstadium/HockeySDK-Windows</projectUrl>
+    <iconUrl>http://en.gravatar.com/userimage/24976810/5ed0f445334281ffd16dda03d29bfa33.png?size=512</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Use the HockeyApp platform from Windows and WindowsPhone apps. Collect crash reports, provide feedback-functionality and automatic updates.</description>
+    <summary />
+    <copyright>Copyright (c) 2014 Bit Stadium GmbH</copyright>
+    <language>en-US</language>
+    <tags>crash reports reporting feedback WPF WP8 SL5 windows phone hockeyapp</tags>
+    <dependencies>
+      <group targetFramework=".NETPortable0.0-net40+sl50">
+        <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      </group>
+      <group targetFramework=".NETPortable0.0-net45+win80+wp80+wpa81" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,6 @@
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\ManagedVideoContainer\bin\Release\VATRP.Linphone.VideoWrapper.dll
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\ManagedVideoContainer\obj\Release\ManagedVideoContainer.csprojResolveAssemblyReference.cache
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\ManagedVideoContainer\obj\Release\VATRP.Linphone.VideoWrapper.g.resources
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\ManagedVideoContainer\obj\Release\VATRP.Linphone.VideoWrapper.Properties.Resources.resources
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\ManagedVideoContainer\obj\Release\ManagedVideoContainer.csproj.GenerateResource.Cache
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\ManagedVideoContainer\obj\Release\VATRP.Linphone.VideoWrapper.dll

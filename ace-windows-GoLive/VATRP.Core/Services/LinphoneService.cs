@@ -23,6 +23,8 @@ using VATRP.LinphoneWrapper;
 using VATRP.LinphoneWrapper.Enums;
 using VATRP.LinphoneWrapper.Structs;
 
+using System.Data.SQLite;
+
 namespace VATRP.Core.Services
 {
     public partial class LinphoneService : ILinphoneService
@@ -427,6 +429,8 @@ namespace VATRP.Core.Services
                     LinphoneAPI.lp_config_set_int(coreConfig, "sip", "keepalive_period", 90000);
                     LinphoneAPI.lp_config_set_int(coreConfig, "sip", "auto_net_state_mon", 1); // enable linphone network monitoring
 
+
+                   
                     // store contacts as vcard
                     LinphoneAPI.lp_config_set_int(coreConfig, "misc", "store_friends", 1);
 
@@ -652,13 +656,60 @@ namespace VATRP.Core.Services
             _chatLogPath = manager.BuildDataPath("chathistory.db");
             _callLogPath = manager.BuildDataPath("callhistory.db");
             _contactsPath = manager.BuildDataPath("contacts.db");
+            //_contactsPath = manager.BuildDataPath("contacts.sqlite");
+
+
             if (linphoneCore == IntPtr.Zero)
                 return;
             LinphoneAPI.linphone_core_set_chat_database_path(linphoneCore, _chatLogPath);
             LinphoneAPI.linphone_core_set_call_logs_database_path(linphoneCore, _callLogPath);
             LinphoneAPI.linphone_core_set_friends_database_path(linphoneCore, _contactsPath);
+
+            try
+            {
+                //_contactsPath = manager.BuildDataPath("contacts.sqlite");
+                var connectionString = string.Format("data source={0}", _contactsPath + ";Version=3;Password=1234;");
+                SQLiteConnection conn = new SQLiteConnection(connectionString);
+                conn.Open();
+                //conn.ChangePassword("1234");
+                conn.ChangePassword("");
+                //// conn.ChangePassword("1234");
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+
+
+            }
+           
+
+
+            //CreateSQLiteConnectionString(_contactsPath, "password");
+            //CreateSQLiteConnectionString("C:\\Users\\User12\\AppData\\Roaming\\VATRP\\8445688680@24.73.117.26\\contacts123.sqlite", "mypassword");
+            //LinphoneAPI.linphone_core_set_friends_database_path(linphoneCore, CreateSQLiteConnectionString("C:\\Users\\User12\\AppData\\Roaming\\VATRP\\8445688680@24.73.117.26\\contacts.sqlite", "mypassword"));
+            // //dbConnection = new SQLiteConnection(connectionString)
+
+       
+
+
+
         }
-		
+
+
+        private static string CreateSQLiteConnectionString(string sqlitePath, string password)
+        {
+            SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder();
+            builder.DataSource = sqlitePath;
+            if (password != null)
+                builder.Password = password;
+            builder.PageSize = 4096;
+            builder.UseUTF16Encoding = true;
+            string connstring = builder.ConnectionString;
+            return connstring;
+        }
+
+
         void SetTimeout(int miliseconds)
         {
             var timeout = new System.Timers.Timer {Interval = miliseconds, AutoReset = false};

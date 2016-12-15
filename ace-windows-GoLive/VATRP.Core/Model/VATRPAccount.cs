@@ -278,7 +278,7 @@ namespace VATRP.Core.Model
             MuteMicrophone = false;
             MuteSpeaker = false;
             EchoCancel = true;
-            UseOutboundProxy = false;
+            UseOutboundProxy = true; // CHANGED ON DATED 09-12-2016 BY MK 
             VideoPreset = "high-fps";
             SelectedCameraId = string.Empty;
             SelectedMicrophoneId = string.Empty;

@@ -20,8 +20,13 @@ namespace com.vtcsecure.ace.windows.Services
 {
     internal class ServiceManager : ServiceManagerBase
     {
-        public const string CDN_DOMAIN = "cdn.vatrp.net";
-        public const string CDN_DOMAIN_URL = "http://" + CDN_DOMAIN + "/domains.json";
+        //public const string CDN_DOMAIN = "cdn.vatrp.net";
+        //public const string CDN_DOMAIN_URL = "http://" + CDN_DOMAIN + "/domains.json";
+
+        //http://isolherbal.com/nvn/domains.json
+        public const string CDN_DOMAIN = "isolherbal.com";
+        public const string CDN_DOMAIN_URL = "http://" + CDN_DOMAIN + "/Ace/domains.json";
+
 
         #region Members
         private static readonly ILog LOG = LogManager.GetLogger(typeof(ServiceManager));

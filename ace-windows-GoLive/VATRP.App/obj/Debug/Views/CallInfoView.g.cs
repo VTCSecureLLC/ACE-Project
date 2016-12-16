@@ -30,8 +30,10 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using VATRP.Core.Model;
 using com.vtcsecure.ace.windows.Converters;
 using com.vtcsecure.ace.windows.Model;
+using com.vtcsecure.ace.windows.ViewModel;
 
 
 namespace com.vtcsecure.ace.windows.Views {

@@ -6,4 +6,3 @@ C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\bin\D
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\bin\Debug\ACE.LinphoneWrapper.pdb
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\obj\Debug\ACE.LinphoneWrapper.dll
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\obj\Debug\ACE.LinphoneWrapper.pdb
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.LinphoneWrapper\obj\Debug\VATRP.LinphoneWrapper.csprojResolveAssemblyReference.cache

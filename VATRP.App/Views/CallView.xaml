@@ -1,0 +1,26 @@
+﻿<model:VATRPWindow x:Class="com.vtcsecure.ace.windows.Views.CallView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:model="clr-namespace:com.vtcsecure.ace.windows.Model"
+        Title="Remote Video" 
+                   Activated="OnWindowActivated" 
+                   Closing="Window_Closing" 
+                   Closed="OnClosed"
+                   Unloaded="OnUnloaded"
+                   Loaded="OnWindowLoaded"
+                   SizeChanged="OnSizeChanged"
+                   LocationChanged="OnLocationChanged"
+                   StateChanged="OnStateChanged" 
+                   SourceInitialized="Window_Initialized"
+                   IsVisibleChanged="OnVisibilityChanged" 
+                   Icon="/ACE;component/Resources/cameraview.png" 
+                   PreviewMouseMove="VATRPWindow_PreviewMouseMove" 
+                   Deactivated="VATRPWindow_Deactivated" 
+                   MinHeight="300"
+                   MinWidth="380"
+                   >
+
+    <Grid>
+       
+    </Grid>
+</model:VATRPWindow>

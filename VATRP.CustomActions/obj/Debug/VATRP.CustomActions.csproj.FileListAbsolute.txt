@@ -1,0 +1,8 @@
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\bin\Debug\VATRP.CustomActions.dll
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\bin\Debug\VATRP.CustomActions.CA.dll
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\bin\Debug\VATRP.CustomActions.pdb
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\bin\Debug\Microsoft.Deployment.WindowsInstaller.dll
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\bin\Debug\Microsoft.Deployment.WindowsInstaller.xml
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\obj\Debug\VATRP.CustomActions.csprojResolveAssemblyReference.cache
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\obj\Debug\VATRP.CustomActions.dll
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.CustomActions\obj\Debug\VATRP.CustomActions.pdb

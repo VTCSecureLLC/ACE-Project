@@ -1,0 +1,17 @@
+﻿<model:VATRPWindow x:Class="com.vtcsecure.ace.windows.Views.SelfView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:model="clr-namespace:com.vtcsecure.ace.windows.Model"
+        Title="Self Video" Height="288" Width="352"
+                   Activated="Window_Activated" 
+                   Closing="Window_Closing" 
+                   StateChanged="Window_StateChanged" 
+                   LocationChanged="Window_LocationChanged" 
+                   SourceInitialized="Window_Initialized"
+                   IsVisibleChanged="OnVisibilityChanged" 
+                   Icon="/ACE;component/Resources/cameraview.png"
+                   >
+    <Grid Background="{StaticResource AppMainWindowBrush}">
+        
+    </Grid>
+</model:VATRPWindow>

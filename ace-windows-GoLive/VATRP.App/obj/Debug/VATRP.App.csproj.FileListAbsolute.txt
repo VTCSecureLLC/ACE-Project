@@ -141,11 +141,7 @@ C:\Users\User12\Desktop\Manoj\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.pdb
 C:\Users\User12\Desktop\Manoj\Backup\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.exe.config
 C:\Users\User12\Desktop\Manoj\Backup\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.exe
 C:\Users\User12\Desktop\Manoj\Backup\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.pdb
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\images\camera_disabled.jpg
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\log4net.config
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.exe.config
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.exe
-C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.pdb
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.Core.dll
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.LinphoneWrapper.dll
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\HockeyApp.dll
@@ -283,3 +279,7 @@ C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\com.vtc
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\VATRP.App.csproj.GenerateResource.Cache
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.exe
 C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\obj\Debug\ACE.pdb
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\images\camera_disabled.jpg
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\log4net.config
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.exe.config
+C:\Users\User12\Desktop\Manoj\SVN\ace-windows-GoLive\VATRP.App\bin\Debug\ACE.pdb

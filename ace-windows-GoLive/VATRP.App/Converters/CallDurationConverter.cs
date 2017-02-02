@@ -19,6 +19,8 @@ namespace com.vtcsecure.ace.windows.Converters
             if (value is int)
             {
                 var duration = (int)value;
+                Console.WriteLine("duration " + duration);
+
                 if (duration > 3599)
                     return string.Format("{0:D2}:{1:D2}:{2:D2}", duration/3600, (duration/60)%60, duration%60);
                 return string.Format("{0:D2}:{1:D2}", duration / 60, duration % 60);

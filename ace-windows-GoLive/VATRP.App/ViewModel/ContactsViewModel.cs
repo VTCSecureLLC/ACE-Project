@@ -84,7 +84,8 @@ namespace com.vtcsecure.ace.windows.ViewModel
             {
                 CheckFileExists = true,
                 CheckPathExists = true,
-                Filter = "vCard Files (*.VCF, *.vcard)|*.VCF;*vcard",
+               
+                Filter = "vCard Files (*.VCF, *.vcard)|*.VCF;*vcard | xml Files (*.xml, *.xml)|*.xml;*xml",
                 FilterIndex = 0,
 
                 ShowReadOnly = false,
@@ -95,6 +96,8 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
             if (ServiceManager.Instance.LinphoneService.VCardSupported)
             {
+               
+               // System.Windows.Forms.MessageBox.Show("ExecuteImportCommand Path" + openDlg.FileName);
                 var recordsImported = ServiceManager.Instance.ContactService.ImportVCards(openDlg.FileName);
             }
             else

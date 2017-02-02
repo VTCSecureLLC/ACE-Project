@@ -60,6 +60,8 @@ namespace com.vtcsecure.ace.windows.Utilities
             }
         }
 
+
+
         public static T MakeJsonWebRequest<T>(string webRequestUrl)
         {
 
@@ -87,6 +89,36 @@ namespace com.vtcsecure.ace.windows.Utilities
                 try
                 {
                     // deserialize json to ResourceInfo List
+
+                    //Friends facebookFriends = new JavaScriptSerializer().Deserialize<Friends>(result);
+
+                    
+                    
+                    //var ser = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    //ser.DeserializeObject(jsonResults);
+                    //ser.DeserializeObject()
+
+                    //var items = ser.DeserializeObject<List<T>>(jsonResults);
+
+                    
+                    //T item1 = JsonDeserializer.JsonDeserialize<T>(jsonResults.ToString());
+
+                    //************BY MK FOR REMOVE THE PROVIDER AND VERSION FROM JSON STRING *************************
+                    int index1 = jsonResults.IndexOf("[");
+
+
+                   
+                        jsonResults = jsonResults.Remove(0, index1 - 1);
+                   
+                    //jsonResults = jsonResults.Remove(0, index1 - 1);
+
+                    //jsonResults = jsonResults.Remove(0, index1-1);
+                    int index2 = jsonResults.IndexOf("]");
+                    jsonResults = jsonResults.Remove(index2 + 1, jsonResults.Length - index2-1);
+                    //*****************************************************************************************************
+                    //jsonResults = jsonResults.Substring(0, index2);
+                   //jsonResults= jsonResults.Substring(index1,index2-1);
+
                     T item = JsonDeserializer.JsonDeserialize<T>(jsonResults.ToString());
                     return item;
                 }

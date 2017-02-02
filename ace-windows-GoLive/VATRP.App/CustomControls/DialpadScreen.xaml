@@ -153,14 +153,30 @@
                   >
             <ComboBox.Resources>
             </ComboBox.Resources>
-            
+
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image Source="{Binding Provider.ImagePath}" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <!--<ColumnDefinition Width="Auto"/>-->
+                        </Grid.ColumnDefinitions>
+                        <!--<Image Grid.Column="0" Source="{Binding Path=ImagePath}" />-->
+                        <TextBlock Grid.Column="0" Text="{Binding Provider.Label}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1" FontSize="12" />
+                    </Grid>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
+            
+            
+            <!--<ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        --><!--<Image Source="{Binding Provider.ImagePath}" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>-->
+                        <!--<Label Source="{Binding Provider.labe}" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>--><!--
+                        <TextBlock Grid.Column="1" Text="{Binding Provider.labe}" VerticalAlignment="Center" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>-->
         </ComboBox>
         <Button x:Name="buttonAudioCall" Margin="0.5,0.5,0,0" Grid.Column="1"  Grid.Row="5" Grid.ColumnSpan="2" 
                      

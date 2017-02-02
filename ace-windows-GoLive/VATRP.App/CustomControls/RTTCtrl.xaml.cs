@@ -39,8 +39,8 @@ namespace com.vtcsecure.ace.windows.CustomControls
             //***************************************************************************************************************
             InitializeComponent();
             //****************COMMENTED BY MK ON DATED 24-OCT-2016 FOR DISABLE PASTE HANDLER IN RTT
-           // pasteHandlerTimer.Tick += OnCheckPastedText;
-            //DataObject.AddPastingHandler(MessageTextBox, PasteHandler);
+            pasteHandlerTimer.Tick += OnCheckPastedText;
+            DataObject.AddPastingHandler(MessageTextBox, PasteHandler);
             //***************************************************************************************
         }
 
@@ -66,7 +66,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             }
             else
             {
-                //_viewModel.EnqueueInput(pasteText);
+                _viewModel.EnqueueInput(pasteText);
               
                
             }
@@ -153,6 +153,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             //************************************************************************************************************************************
             // Send button clicked from Chat window, that is visible in the right side of Call.
             //************************************************************************************************************************************
+
             if (_viewModel != null)
             {
                 if (!ServiceManager.Instance.IsRttAvailable /*|| !_viewModel.IsSendingModeRTT*/)
@@ -161,36 +162,32 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 }
                 else
                 {
-                    _viewModel.EnqueueInput(_viewModel.MessageText); // By MK on dated 24-Oct-2016 for Disable RTT and send message to user on "Send" button click.
                     _viewModel.EnqueueInput("\r");
                 }
             }
+
+
+            //if (_viewModel != null)
+            //{
+            //    if (!ServiceManager.Instance.IsRttAvailable /*|| !_viewModel.IsSendingModeRTT*/)
+            //    {
+            //        _viewModel.SendMessage(_viewModel.MessageText);
+            //    }
+            //    else
+            //    {
+            //        _viewModel.EnqueueInput(_viewModel.MessageText); // By MK on dated 24-Oct-2016 for Disable RTT and send message to user on "Send" button click.
+            //        _viewModel.EnqueueInput("\r");
+            //    }
+            //}
         }
+
 
         private void OnTextInput(object sender, TextCompositionEventArgs e)
         {
-            //*********************************************************************************************
-            // Code by MK for diable RTT and send message on enter
-            //*********************************************************************************************
-            if (e.Text == "\r")
-            {
-                _viewModel.EnqueueInput(_viewModel.MessageText + "\r");
-                //_viewModel.SendMessage(_viewModel.MessageText + "\r");
-                _viewModel.MessageText = string.Empty;
-
-            }
-            //*******************************************************************************************************
-
-            Console.WriteLine("OnTextInput MessageTextBox ***" + MessageTextBox.Text);
-            //************************************************************************************************************************************
-            // On Text Input in the Chat window. Chat window which is displaying in the right side of call window.
-            //************************************************************************************************************************************
             if (_viewModel != null)
             {
                 if (_viewModel.IsSendingModeRTT)
-                {
-                      //_viewModel.EnqueueInput(e.Text); // Commented by MK on dated 20-OCT-2016 for disable RTT message
-                }
+                    _viewModel.EnqueueInput(e.Text);
                 else if (!string.IsNullOrEmpty(e.Text))
                 {
                     if (e.Text == "\r")
@@ -211,11 +208,56 @@ namespace com.vtcsecure.ace.windows.CustomControls
             }
         }
 
+
+        //private void OnTextInput(object sender, TextCompositionEventArgs e)
+        //{
+        //    //*********************************************************************************************
+        //    // Code by MK for diable RTT and send message on enter
+        //    //*********************************************************************************************
+        //    //if (e.Text == "\r")
+        //    //{
+        //    //    _viewModel.EnqueueInput(_viewModel.MessageText + "\r");
+        //    //    //_viewModel.SendMessage(_viewModel.MessageText + "\r");
+        //    //    _viewModel.MessageText = string.Empty;
+
+        //    //}
+        //    //*******************************************************************************************************
+
+        //    Console.WriteLine("OnTextInput MessageTextBox ***" + MessageTextBox.Text);
+        //    //************************************************************************************************************************************
+        //    // On Text Input in the Chat window. Chat window which is displaying in the right side of call window.
+        //    //************************************************************************************************************************************
+        //    if (_viewModel != null)
+        //    {
+        //        if (_viewModel.IsSendingModeRTT)
+        //        {
+        //              _viewModel.EnqueueInput(e.Text); // Commented by MK on dated 20-OCT-2016 for disable RTT message
+        //        }
+        //        else if (!string.IsNullOrEmpty(e.Text))
+        //        {
+        //            if (e.Text == "\r")
+        //            {
+        //                _viewModel.SendMessage(_viewModel.MessageText);
+        //                _viewModel.MessageText = string.Empty;
+        //            }
+        //            else
+        //            {
+        //                if (_viewModel.MessageText.Length > 199)
+        //                {
+        //                    _viewModel.SendMessage(_viewModel.MessageText.Substring(0, 200));
+        //                    _viewModel.MessageText = _viewModel.MessageText.Remove(0, 200);
+        //                    MessageTextBox.CaretIndex = _viewModel.MessageText.Length;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         private void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
 
             //Console.WriteLine("OnPreviewKeyDown MessageTextBox ***" + MessageTextBox.Text);
-            return;
+           // return;
             //************************************************************************************************************************************
             // A key is pressed in the chat window which is visible in the right side of Call Window when call is running.
             //************************************************************************************************************************************

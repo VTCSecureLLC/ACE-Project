@@ -83,8 +83,9 @@ namespace com.vtcsecure.ace.windows
 		
 	    private void OnCallStateChanged(VATRPCall call)
 	    {
+           
 
-
+            Console.WriteLine("OnCallStateChanged: " + call.CallState);
             //*******************************************************************************************************************************************************
             // This method is called when user try to connect a call and call status changed like (Trying, Connected, Ringing, Closed, Incoming ) etc.
             //*******************************************************************************************************************************************************
@@ -151,6 +152,8 @@ namespace com.vtcsecure.ace.windows
 
 		    if (_mainViewModel.ActiveCallModel == null)
 		        _mainViewModel.ActiveCallModel = callViewModel;
+
+            Console.WriteLine(string.Format("CallStateChanged: State - {0}. Call: {1}", call.CallState, call.NativeCallPtr));
 
             LOG.Info(string.Format("CallStateChanged: State - {0}. Call: {1}", call.CallState, call.NativeCallPtr));
 		    ctrlCall.SetCallViewModel(_mainViewModel.ActiveCallModel);
@@ -1413,6 +1416,8 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
                 return;
 
             _isNeworkReachable = reachable;
+
+            Console.WriteLine("### Network Connectivity changed to " + (reachable ? "UP" : "DOWN"));
             LOG.Info("### Network Connectivity changed to " + (reachable ? "UP" :"DOWN") );
             if (!_isNeworkReachable)
             {

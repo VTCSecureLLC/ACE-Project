@@ -459,6 +459,7 @@ namespace VATRP.Core.Services
 
         void LinphoneMainLoop()
         {
+            Console.WriteLine("Main loop started");
             LOG.Debug("Main loop started");
             bool isRunning = true;
             bool dequeCommand;
@@ -478,8 +479,9 @@ namespace VATRP.Core.Services
 
                         if (command != null)
                         {
+                            Console.WriteLine("Main loop started: " + command.Command);
                             switch (command.Command)
-                            {
+                            { 
                                 case LinphoneCommandType.TerminateCall:
                                     var terminateCmd = command as TerminateCallCommand;
 
@@ -665,23 +667,25 @@ namespace VATRP.Core.Services
             LinphoneAPI.linphone_core_set_call_logs_database_path(linphoneCore, _callLogPath);
             LinphoneAPI.linphone_core_set_friends_database_path(linphoneCore, _contactsPath);
 
-            try
-            {
-                //_contactsPath = manager.BuildDataPath("contacts.sqlite");
-                var connectionString = string.Format("data source={0}", _contactsPath + ";Version=3;Password=1234;");
-                SQLiteConnection conn = new SQLiteConnection(connectionString);
-                conn.Open();
-                //conn.ChangePassword("1234");
-                conn.ChangePassword("");
-                //// conn.ChangePassword("1234");
+           // AddDBPassword();
 
-                conn.Close();
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    //_contactsPath = manager.BuildDataPath("contacts.sqlite");
+            //    var connectionString = string.Format("data source={0}", _contactsPath + ";Version=3;Password=1234;");
+            //    SQLiteConnection conn = new SQLiteConnection(connectionString);
+            //    conn.Open();
+            //    //conn.ChangePassword("1234");
+            //    conn.ChangePassword("");
+            //    //// conn.ChangePassword("1234");
+
+            //    conn.Close();
+            //}
+            //catch (Exception)
+            //{
 
 
-            }
+            //}
            
 
 
@@ -1157,6 +1161,7 @@ namespace VATRP.Core.Services
                 //    LinphoneAPI.linphone_call_stop_recording(call.NativeCallPtr);
 
                 LOG.Info("Terminate Call " + callPtr);
+                Debug.WriteLine("Terminate Call " + callPtr);
                 call.LinphoneMessage = message;
                 call.SipErrorCode = 0;
                 call.CallState = VATRPCallState.Closed;
@@ -3058,6 +3063,9 @@ namespace VATRP.Core.Services
             if (_cardDavSyncInProgress)
                 return;
 
+            LinphoneConfig.CardDavDomain = "http://192.168.5.136/SabreDAV/addressbookserver.php/addressbooks/admin/default/";
+            LinphoneConfig.CardDavUser = "admin";
+            LinphoneConfig.CardDavPass = "admin";
             carddav_auth = LinphoneAPI.linphone_core_find_auth_info(linphoneCore, LinphoneConfig.CardDavRealm, LinphoneConfig.CardDavUser, LinphoneConfig.CardDavDomain);
             if (carddav_auth != IntPtr.Zero)
             {
@@ -3448,5 +3456,158 @@ namespace VATRP.Core.Services
             return configString.ToString();
         }
         #endregion
+
+
+        public void RemoveDBPassword()
+        {
+            try
+            {
+                _contactsPath = manager.BuildDataPath("contacts.db");
+                //string conn = @"Data Source=database.s3db;Password=Mypass;";
+                string conn = string.Format("data source={0}", _contactsPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword(""); //connection.ChangePassword("");
+                connection.Close();
+
+                //UpdatePrivateDataPath();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                _contactsPath = manager.BuildDataPath("contacts.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("");
+                connection.Close();
+
+                //UpdatePrivateDataPath();
+            }
+        }
+        public void AddDBPassword()
+        {
+            //if the database has already password
+            try
+            {
+                _contactsPath = manager.BuildDataPath("contacts.db");
+                //string conn = @"Data Source=database.s3db;Password=Mypass;";
+                string conn = string.Format("data source={0}", _contactsPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("1234"); //connection.ChangePassword("");
+                connection.Close();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                _contactsPath = manager.BuildDataPath("contacts.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("1234");
+                connection.Close();
+            }
+        }
+
+        public void AddCallHistoryDBPassword()
+        {
+            try
+            {
+                _contactsPath = manager.BuildDataPath("callhistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                connection.ChangePassword("1234");
+                connection.Close();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                _contactsPath = manager.BuildDataPath("callhistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("1234");
+                connection.Close();
+            }
+        }
+        public void RemoveCallHistoryDBPassword()
+        {
+            try
+            {
+                _contactsPath = manager.BuildDataPath("callhistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("");
+                connection.Close();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                _contactsPath = manager.BuildDataPath("callhistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("");
+                connection.Close();
+            }
+        }
+        public void AddChatHistoryDBPassword()
+        {
+            try
+            {
+                _contactsPath = manager.BuildDataPath("chathistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                connection.ChangePassword("1234");
+                connection.Close();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                _contactsPath = manager.BuildDataPath("chathistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("1234");
+                connection.Close();
+            }
+        }
+        public void RemoveChatHistoryDBPassword()
+        {
+            try
+            {
+                _contactsPath = manager.BuildDataPath("chathistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("");
+                connection.Close();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                _contactsPath = manager.BuildDataPath("chathistory.db");
+                string conn = string.Format("data source={0}", _contactsPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("");
+                connection.Close();
+            }
+        }
+
     }
 }

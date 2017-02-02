@@ -18,8 +18,26 @@ namespace VATRP.Core.Model
     // {"name": "Sorenson", "domain": "sorenson.vatrp.net", "icon": "http://cdn.vatrp.net/sorenson.png", "icon2x": "http://cdn.vatrp.net/sorenson2.png" },
     // {"name": "ZVRS", "domain": "zvrs.vatrp.net", "icon": "http://cdn.vatrp.net/csdvrs.png", "icon2x": "http://cdn.vatrp.net/csdvrs2x.png" }
     //]
+    //public class VATRPDomain
+    //{
+
+
+    //    public string name { get; set; }
+    //    public string domain { get; set; }
+    //    public string icon { get; set; }
+    //    public string icon2x { get; set; }
+
+    //    public VATRPDomain()
+    //    {
+    //    }
+    //}
+
+
+
     public class VATRPDomain
     {
+
+
         public string name { get; set; }
         public string domain { get; set; }
         public string icon { get; set; }
@@ -29,4 +47,42 @@ namespace VATRP.Core.Model
         {
         }
     }
+
+
+    //public class ProvidersList
+    //{
+
+    //    public List<providers> providers { get; set; }
+    //}
+
+    //public class providers
+    //{
+
+    //    public string name { get; set; }
+    //    public string domain { get; set; }
+    //    public string icon { get; set; }
+    //    public string icon2x { get; set; }
+    //}
+
+
+
+    //public class providers
+    //{
+    //    public string name { get; set; }
+    //    public string domain { get; set; }
+    //    public string icon { get; set; }
+    //    public string icon2x { get; set; }
+
+
+    //}
+    //public class providersList
+    //{
+    //    public List<providers> providers { get; set; }
+    //}
+
+
+
+
+
+
 }

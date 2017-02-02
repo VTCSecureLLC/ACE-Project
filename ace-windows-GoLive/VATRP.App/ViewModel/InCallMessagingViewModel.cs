@@ -124,7 +124,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
                     if (!message.NotBlank())
                         return;
 
-                    _chatsManager.ComposeAndSendMessage(ServiceManager.Instance.ActiveCallPtr, Chat, key, isIncomplete);
+                  _chatsManager.ComposeAndSendMessage(ServiceManager.Instance.ActiveCallPtr, Chat, key, isIncomplete);
 
                     if (!isIncomplete || key == '\r')
                     {

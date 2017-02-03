@@ -428,6 +428,8 @@ namespace VATRP.Linphone.VideoWrapper
         {
             var str = string.Empty;
 
+            Console.WriteLine("UpdateCallDuration: " + _foregroundCallDuration);
+
             if (_foregroundCallDuration > 3599)
                 str = string.Format("{0:D2}:{1:D2}:{2:D2}", _foregroundCallDuration/3600,
                     (_foregroundCallDuration/60)%60, _foregroundCallDuration%60);

@@ -320,7 +320,8 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
         internal void UpdateCallInfo(VATRPCall call)
         {
-
+           
+            //Console.WriteLine("UpdateCallInfo");
             //*********************************************************************************************************************************
             // When anything related to call is changed or when call is running then this method is called.
             //*********************************************************************************************************************************
@@ -338,6 +339,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
             if (curparams != IntPtr.Zero)
             {
 
+                
                 int sipPort, rtpPort;
                 ServiceManager.Instance.LinphoneService.GetUsedPorts(out sipPort, out rtpPort);
 
@@ -369,7 +371,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
 
                 var videoCodecName = ServiceManager.Instance.LinphoneService.GetUsedVideoCodec(curparams);
 
-
+                //Console.WriteLine("videoCodecName " + videoCodecName);
                 if (has_video && !string.IsNullOrWhiteSpace(videoCodecName))
                 {
                     VideoCodec = videoCodecName;
@@ -504,7 +506,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
                 ServiceManager.Instance.Dispatcher.BeginInvoke((Action)(() => this.OnCallStatisticsChanged(call)));
                 return;
             }
-            
+            //Console.WriteLine("OnCallStatisticsChanged");
             UpdateCallInfo(call);
         }
     }

@@ -191,7 +191,7 @@ namespace com.vtcsecure.ace.windows
                 var dlgResult = lrWnd.ShowDialog();
                 if (dlgResult == null || (bool)!dlgResult)
                 {
-                    ServiceManager.Instance.Stop();
+                    ServiceManager.Instance.Stop();prop:
                     this.Shutdown();
                     return;
                 }
@@ -217,10 +217,15 @@ namespace com.vtcsecure.ace.windows
             //************************************************************************************************************************
             // This method will called when user quit the application. "On Application Exit"
             //************************************************************************************************************************
+            try
+            {
+
+           
             mutex.Dispose();
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             var version = assembly.GetName().Version;
 
+            
             string appVersion = string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
 
             if (appVersion != appVersionArray[0].Version)
@@ -244,15 +249,18 @@ namespace com.vtcsecure.ace.windows
 
                     }
                 }
-
-
-               
-
-            
-               
             }
-            
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("App_OnExit: " + ex.Message);
+                throw;
+            }
+
+            ServiceManager.Instance.LinphoneService.AddDBPassword();
+            ServiceManager.Instance.LinphoneService.AddCallHistoryDBPassword();
+            ServiceManager.Instance.LinphoneService.AddChatHistoryDBPassword();
 
 
         }
@@ -269,7 +277,7 @@ namespace com.vtcsecure.ace.windows
                 //tempProc.Visible = false;
                 // tempProc.WaitForExit();
 
-
+                System.Environment.Exit(1);
                 //tempProc.Visible = true;
             }
         }
@@ -286,23 +294,16 @@ namespace com.vtcsecure.ace.windows
             {
 
          
-            string response = Utilities.JsonWebRequest.MakeJsonWebRequest("http://isolherbal.com/Ace/version.json");
+            //string response = Utilities.JsonWebRequest.MakeJsonWebRequest("http://isolherbal.com/Ace/version.json");
+                string response = Utilities.JsonWebRequest.MakeJsonWebRequest("https://www.appregent.com/version.json");
 
+        
             //using System.Data;
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             var version = assembly.GetName().Version;
 
             string appVersion= string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
-
-
-          
-
-
             appVersionArray = JsonConvert.DeserializeObject<AppVersion[]>(response);
-
-            
-
-
             var appDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData); // System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             if (appVersion != appVersionArray[0].Version)
             {
@@ -327,12 +328,11 @@ namespace com.vtcsecure.ace.windows
                         {
                            // App_OnExit(null, null);
                             InstallBuild();
-                            System.Environment.Exit(1);
+                            //System.Environment.Exit(1);
 
                         }
                     }
                 }
-
             }
             else
             {
@@ -346,7 +346,9 @@ namespace com.vtcsecure.ace.windows
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Check New Ver: " + ex.Message);
+                Debug.WriteLine("Check New Ver: " + ex.Message);
+
+                //MessageBox.Show("Check New Ver: " + ex.Message);
                 throw;
             }
 

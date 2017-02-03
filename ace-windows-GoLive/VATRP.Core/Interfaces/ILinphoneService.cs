@@ -133,5 +133,19 @@ namespace VATRP.Core.Interfaces
         void SetIncomingCallRingingTimeout(int timeout);
 
         #endregion
+
+        void RemoveDBPassword();
+
+        void AddChatHistoryDBPassword();
+
+        void AddCallHistoryDBPassword();
+
+        void RemoveCallHistoryDBPassword();
+
+        void RemoveChatHistoryDBPassword();
+
+        void AddDBPassword();
+
+       
     }
 }

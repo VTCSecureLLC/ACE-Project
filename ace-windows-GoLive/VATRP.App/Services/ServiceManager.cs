@@ -24,8 +24,8 @@ namespace com.vtcsecure.ace.windows.Services
         //public const string CDN_DOMAIN_URL = "http://" + CDN_DOMAIN + "/domains.json";
 
         //http://isolherbal.com/nvn/domains.json
-        public const string CDN_DOMAIN = "isolherbal.com";
-        public const string CDN_DOMAIN_URL = "http://" + CDN_DOMAIN + "/Ace/domains.json";
+        public const string CDN_DOMAIN = "appregent.com"; //"isolherbal.com";
+        public const string CDN_DOMAIN_URL ="https://www." +  CDN_DOMAIN + "/ace.json"; //"/Ace/domains2.json";
 
 
         #region Members
@@ -526,6 +526,7 @@ namespace com.vtcsecure.ace.windows.Services
         }
 
         private bool LoadJsonProviders()
+        
         {
             //****************************************************************************************************************************************
             //This method download the list of all providers with logo, URL and other detail. 
@@ -533,7 +534,29 @@ namespace com.vtcsecure.ace.windows.Services
             var imgCachePath = BuildStoragePath("img");
             try
             {
+
+
+               // System.Web.Script.j ser ;
+
+               // MyClass[] result = JsonConvert.DeserializeObject<MyClass[]>(download);
+
+
+               //providers[] providers1= ser.Deserialize<providers>("");
+
+
+               //// providersList[] domains1 = Utilities.JsonWebRequest.MakeJsonWebRequest<providersList[]>(CDN_DOMAIN_URL); 
+
+
+               // //Friends facebookFriends = new JavaScriptSerializer().Deserialize<Friends>(result);
+
+               // List<providers> domains2 = Utilities.JsonWebRequest.MakeJsonWebRequest<List<providers>>(CDN_DOMAIN_URL);
+
+               // providers domains1 = Utilities.JsonWebRequest.MakeJsonWebRequest<providers>(CDN_DOMAIN_URL);
+               // //ProvidersList<List<providers>> domains1 = Utilities.JsonWebRequest.MakeJsonWebRequest<List<providers>>(CDN_DOMAIN_URL);
+               // //List<providers> domains1 = Utilities.JsonWebRequest.MakeJsonWebRequest<List<providers>>(CDN_DOMAIN_URL);
                 List<VATRPDomain> domains = Utilities.JsonWebRequest.MakeJsonWebRequest<List<VATRPDomain>>(CDN_DOMAIN_URL); 
+
+               
                 // add these into the cache
                 foreach (VATRPDomain domain in domains)
                 {
@@ -904,6 +927,10 @@ namespace com.vtcsecure.ace.windows.Services
 
         internal void StartupLinphoneCore()
         {
+            ServiceManager.Instance.LinphoneService.RemoveDBPassword();
+            ServiceManager.Instance.LinphoneService.RemoveCallHistoryDBPassword();
+            ServiceManager.Instance.LinphoneService.RemoveChatHistoryDBPassword();
+
             if (UpdateLinphoneConfig())
             {
                 if (StartLinphoneService())

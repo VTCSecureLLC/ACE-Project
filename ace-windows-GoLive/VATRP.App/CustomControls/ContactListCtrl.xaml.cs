@@ -119,8 +119,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
                     //****************************************************************************************************
                     if (MessageBox.Show("Are you sure you want to remove/delete contact?", "ACE", MessageBoxButton.OKCancel,
                         MessageBoxImage.Question) == MessageBoxResult.OK)
-
+                    {
+                       // ServiceManager.Instance.LinphoneService.RemoveDBPassword();
                         ServiceManager.Instance.ContactService.DeleteLinphoneContact(contact);
+                    }
                 }
             }
         }

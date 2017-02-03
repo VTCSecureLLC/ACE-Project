@@ -21,10 +21,23 @@ using VATRP.LinphoneWrapper.Structs;
 using System.Text;
 using System.Security.Cryptography;
 
+
+using System.Xml;
+using System.Xml.Schema;
+
+using System.Windows;
+using log4net;
+
+
+
 namespace VATRP.Core.Services
 {
     public sealed class ContactService : IContactsService
     {
+        private static readonly log4net.ILog _log = LogManager.GetLogger("APP");
+
+
+
         private readonly ServiceManagerBase _manager;
         private ObservableCollection<VATRPContact> _contacts;
         private ObservableCollection<VATRPUserGroup> _groups;
@@ -196,7 +209,7 @@ namespace VATRP.Core.Services
             editing = true;
             try
             {
-                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";Version=3;Password=1234;");
+                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath);// + ";Version=3;Password=1234;");
                 using (var dbConnection = new SQLiteConnection(connectionString))
                 {
                     dbConnection.Open();
@@ -252,6 +265,8 @@ namespace VATRP.Core.Services
             // Remove the Contact from Favorite in Local Database. This method called when Favorite contact is deleted from contact list. Then it first remove the Favorite 
             // from database. Database path is C:\Users\User12\AppData\Roaming\VATRP\acetest@sip.linphone.org\contacts.db
             //****************************************************************************************************
+           // AddDBPassword2();
+
             if (contact.DbID == 0)
                 return;
             if (editing)
@@ -259,7 +274,7 @@ namespace VATRP.Core.Services
             editing = true;
             try
             {
-                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";Version=3;Password=1234;");
+                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath);// + ";Version=3;Password=1234;");
                 using (var dbConnection = new SQLiteConnection(connectionString))
                 {
                     dbConnection.Open();
@@ -299,7 +314,7 @@ namespace VATRP.Core.Services
             editing = true;
             try
             {
-                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";Version=3;Password=1234;");
+                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath);// + ";Version=3;Password=1234;");
                 using (var dbConnection = new SQLiteConnection(connectionString))
                 {
                     dbConnection.Open();
@@ -336,11 +351,177 @@ namespace VATRP.Core.Services
         public int ImportVCards(string vcardPath)
         {
 
+            //System.Windows.Forms.MessageBox.Show("XML Path" + vcardPath);
             //**************************************************************************************************************
             // Import Vcard contact in contact list.
             //**************************************************************************************************************
+
+            int returnCount = 0;
             if (_manager.LinphoneService.LinphoneCore == IntPtr.Zero)
                 return 0;
+          //  System.Windows.Forms.MessageBox.Show("XML Path 1" + vcardPath);
+
+            if (isXCard(vcardPath)){
+                //System.Windows.Forms.MessageBox.Show("Valid XML Path" + vcardPath);
+                XmlDocument xDoc = new XmlDocument();
+                try
+                {
+                    xDoc.Load(vcardPath);
+                }
+                catch (Exception ex)
+                {
+                    //System.Windows.Forms.MessageBox.Show(ex.InnerException.ToString());
+                    throw;
+                }
+                //load up the xml from the location 
+               
+
+                // cycle through each child noed 
+                foreach (XmlNode node in xDoc.DocumentElement.ChildNodes)
+                {
+                    string fn=null, ln=null, address=null;
+
+                    // first node is the url ... have to go to nexted loc node 
+                    foreach (XmlNode locNode in node)
+                    {
+                        // thereare a couple child nodes here so only take data from node named loc 
+                        if (locNode.Name == "fn")
+                        {
+                            fn = locNode.InnerText;
+                        }
+                        else if (locNode.Name == "n")
+                        {
+                            foreach (XmlNode locNode1 in locNode)
+                            {
+                                if (locNode1.Name == "surname")
+                                {
+                                    ln = locNode1.InnerText;
+                                }
+                            }
+                        }
+                        else if (locNode.Name == "email")
+                        {
+                            foreach (XmlNode locNode1 in locNode)
+                            {
+                                if (locNode1.Name == "text")
+                                {
+                                    address = locNode1.InnerText;
+                                }
+                            }
+                        }
+                    }
+
+                   // System.Windows.Forms.MessageBox.Show("Card: " + fn + " " + ln + " " + address);
+
+                   string tempVcardPath= createVcard(fn, ln, address);
+                   returnCount = returnCount+importXcardVcard(tempVcardPath);
+                   File.Delete(tempVcardPath);
+                }
+                return returnCount;
+            }
+            else
+            {
+                return importXcardVcard(vcardPath);
+            }
+
+            return 0;
+
+            //IntPtr vcardsList = LinphoneAPI.linphone_vcard_list_from_vcard4_file(vcardPath);
+
+            //if (vcardsList != IntPtr.Zero)
+            //{
+            //    MSList curStruct;
+            //    do
+            //    {
+            //        curStruct.next = IntPtr.Zero;
+            //        curStruct.prev = IntPtr.Zero;
+            //        curStruct.data = IntPtr.Zero;
+
+            //        curStruct = (MSList)Marshal.PtrToStructure(vcardsList, typeof(MSList));
+            //        if (curStruct.data != IntPtr.Zero)
+            //        {
+            //            string fullname = string.Empty;
+            //            IntPtr tmpPtr = LinphoneAPI.linphone_vcard_get_full_name(curStruct.data);
+            //            if (tmpPtr != IntPtr.Zero)
+            //            {
+            //                fullname = Marshal.PtrToStringAnsi(tmpPtr);
+            //            }
+
+            //            IntPtr addressListPtr = LinphoneAPI.linphone_vcard_get_sip_addresses(curStruct.data);
+
+            //            if (addressListPtr == IntPtr.Zero)
+            //                continue;
+            //            MSList addressdata;
+            //            string sipAddress = "";
+            //            do
+            //            {
+            //                addressdata.next = IntPtr.Zero;
+            //                addressdata.prev = IntPtr.Zero;
+            //                addressdata.data = IntPtr.Zero;
+
+            //                addressdata = (MSList)Marshal.PtrToStructure(addressListPtr, typeof(MSList));
+            //                if (addressdata.data != IntPtr.Zero)
+            //                {
+            //                    sipAddress = Marshal.PtrToStringAnsi(addressdata.data);
+            //                    break;
+            //                }
+            //                addressListPtr = addressdata.next;
+            //            } while (addressdata.data != IntPtr.Zero);
+
+
+            //            if (!string.IsNullOrWhiteSpace(sipAddress) && !string.IsNullOrEmpty(fullname))
+            //            {
+            //                string un, host;
+            //                int port;
+            //                if ( VATRPCall.ParseSipAddress(sipAddress, out un, out host, out port) )
+            //                    AddLinphoneContact(fullname, un, sipAddress);
+            //            }
+            //        }
+            //        vcardsList = curStruct.next;
+            //    } while (curStruct.next != IntPtr.Zero);
+            //}
+            //return 0;
+        }
+
+
+        public string createVcard(string fn, string ln, string address)
+        {
+
+            string vCard = "BEGIN:VCARD" + Environment.NewLine + "VERSION:4.0" + Environment.NewLine;
+            if (address != null)
+            {
+                vCard = vCard + "IMPP:sip:" + address + Environment.NewLine;
+            }
+            if (fn != null)
+            {
+                vCard = vCard + "FN:" + fn + Environment.NewLine;
+            }
+            vCard = vCard + "END:VCARD";
+
+            string tempPath = Path.GetTempFileName(); // Path.GetTempPath();
+
+            tempPath = tempPath.Replace(".tmp", ".vcf");
+            using (StreamWriter sw = new StreamWriter(tempPath))
+            {
+                sw.WriteLine(vCard);
+                sw.Close();
+            }
+
+           // _log.Info("====================================================" + "Card Created: " + tempPath);
+
+           // System.Windows.Forms.MessageBox.Show("Card Created: " + tempPath);
+            return tempPath;
+
+        }
+        public int importXcardVcard(string vcardPath)
+        {
+
+           // System.Windows.Forms.MessageBox.Show("importXcardVcard: " + vcardPath);
+            //*****************************************************************************************************
+            // THIS METHOD IS CREATED BY MK ON DATED 20-12-2016 FOR IMPORT MULTIPLE VCARD FROM XCARD FILE
+            //*****************************************************************************************************
+
+            
             IntPtr vcardsList = LinphoneAPI.linphone_vcard_list_from_vcard4_file(vcardPath);
 
             if (vcardsList != IntPtr.Zero)
@@ -388,7 +569,7 @@ namespace VATRP.Core.Services
                         {
                             string un, host;
                             int port;
-                            if ( VATRPCall.ParseSipAddress(sipAddress, out un, out host, out port) )
+                            if (VATRPCall.ParseSipAddress(sipAddress, out un, out host, out port))
                                 AddLinphoneContact(fullname, un, sipAddress);
                         }
                     }
@@ -396,6 +577,7 @@ namespace VATRP.Core.Services
                 } while (curStruct.next != IntPtr.Zero);
             }
             return 0;
+
         }
 
         public void ExportVCards(string vcardPath)
@@ -415,8 +597,8 @@ namespace VATRP.Core.Services
         public void AddLinphoneContact(string name, string username, string address)
         {
 
-
            
+           // RemoveDBPassword2();
             //**************************************************************************************************************
             // Add contact in Linphone contact, Also called when Import Vcard contact in contact list.
             //**************************************************************************************************************
@@ -424,6 +606,13 @@ namespace VATRP.Core.Services
                 return;
 
             var sipAddress = address.TrimSipPrefix();
+
+            //var contactID1 = new ContactID(sipAddress, IntPtr.Zero);
+            //VATRPContact contact1 = FindContact(contactID1);
+            //if (contact1 != null)
+            //{
+            //    return;
+            //}
 
 
             var fqdn = string.Format("{0} <sip:{1}>", name,  sipAddress);
@@ -483,12 +672,15 @@ namespace VATRP.Core.Services
             //**************************************************************************************************************
             // When Import Vcard contact in contact list, then updating the contact.
             //**************************************************************************************************************
+           // RemoveDBPassword2();
+           // AddDBPassword2();
+
             if (editing)
                 return;
             editing = true;
             try
             {
-                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";Version=3;Password=1234;");
+                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath);// + ";Version=3;Password=1234;");
                 using (var dbConnection = new SQLiteConnection(connectionString))
                 {
                     dbConnection.Open();
@@ -835,7 +1027,7 @@ namespace VATRP.Core.Services
             editing = true;
             try
             {
-                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";Version=3;Password=1234;");
+                var connectionString = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath);// + ";Version=3;Password=1234;");
                 using (var dbConnection = new SQLiteConnection(connectionString))
                 {
                     dbConnection.Open();
@@ -1056,6 +1248,82 @@ namespace VATRP.Core.Services
                 }
             }
             return cipherText;
+        }
+
+
+
+        private bool isXCard(string path)
+        {
+
+            try
+            {
+               var result = new XmlDocument();
+               result.Load(path);
+                return true;
+            }
+            catch (XmlException ex)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        public void AddDBPassword2()
+        {
+            try
+            {
+                //string conn = @"Data Source=database.s3db;Password=Mypass;";
+                string conn = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("1234"); //connection.ChangePassword("");
+                connection.Close();
+
+                //UpdatePrivateDataPath();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                string conn = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("1234");
+                connection.Close();
+
+                //UpdatePrivateDataPath();
+            }
+        }
+
+        public void RemoveDBPassword2()
+        {
+            try
+            {
+                //string conn = @"Data Source=database.s3db;Password=Mypass;";
+                string conn = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";Password=1234;");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword(""); //connection.ChangePassword("");
+                connection.Close();
+
+                //UpdatePrivateDataPath();
+            }
+            //if it is the first time sets the password in the database
+            catch
+            {
+                string conn = string.Format("data source={0}", _manager.LinphoneService.ContactsDbPath + ";");
+                SQLiteConnection connection = new SQLiteConnection(conn);
+                connection.Open();
+                //Some code
+                connection.ChangePassword("");
+                connection.Close();
+
+                //UpdatePrivateDataPath();
+            }
         }
     }
 }

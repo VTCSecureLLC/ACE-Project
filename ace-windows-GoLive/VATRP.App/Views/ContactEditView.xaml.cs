@@ -30,6 +30,8 @@ namespace com.vtcsecure.ace.windows.Views
 
         private void OnOK(object sender, RoutedEventArgs e)
         {
+            //ServiceManager.Instance.LinphoneService.RemoveDBPassword();
+
             if (!_viewModel.ValidateName())
             {
                 MessageBox.Show("Please enter contact name", "ACE", MessageBoxButton.OK,
